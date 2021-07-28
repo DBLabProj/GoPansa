@@ -24,7 +24,8 @@ def augment_json_data(file_name, method="h", path="./"):
         json_data['label_info']['shapes'][i]['points'] = new_points[i]
     
     # create new Json file
-    with open(f'{path}{file_name}-{method}', 'w') as f:
+    file_base, file_extension = file_name.split(".")[0], file_name.split(".")[-1]
+    with open(f'{path}{file_base}-{method}.{file_extension}', 'w') as f:
         json.dump(json_data, f)
 
     return json_data
