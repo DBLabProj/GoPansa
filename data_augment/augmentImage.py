@@ -12,7 +12,11 @@ def image_augmentor(input_path, output_path, v=True, h=True, r=True):
     # if output_path not in os.listdir():
     #     os.mkdir(output_path)
     
-    for filename in os.listdir(input_path):
+    allfiles = len( os.listdir(input_path) )
+
+    for index, filename in enumerate( os.listdir(input_path)):
+        if index % 500 == 0:
+            print( index, '/', allfiles )
         image = None
         # print("filename:",filename)
         if ".png" in filename.lower() or ".jpg" in filename.lower():
