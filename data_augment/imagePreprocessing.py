@@ -19,7 +19,7 @@ def cropBySeg(image, point, padd = 5):
     
     w, h = crop_x[1]-crop_x[0], crop_y[1]-crop_y[0]
 
-    cropped_image = image[ crop_y[0] - padd: crop_y[1] + padd * 2, crop_x[0] - padd: crop_x[1] + w + padd * 2]
+    cropped_image = image[ crop_y[0] - padd: crop_y[1] + padd , crop_x[0] - padd: crop_x[1] + padd ]
     return cropped_image, w, h
 
 # image = image.rotate(180)
@@ -68,13 +68,13 @@ def checkSegShow(imagepath, imagename, jsonpath, jsonname):
 
 
 if __name__ == "__main__":
-    impath = "./sample/cow/image/"
-    jpath = "./sample/cow/seg/"
+    impath = "./sample/pig/image/"
+    jpath = "./sample/pig/seg/"
 
-    imname = "QC_cow_segmentation_1_000007"
-    jname = "QC_cow_segmentation_1_000007"
+    imname = "QC_pig_segmentation_1_000004"
+    jname = "QC_pig_segmentation_1_000004"
 
     savedd = "./sample/pig/croppedd/"
 
     # checkSegShow(impath, imname, jpath, jname)
-    preprocessing(impath, imname, jpath, jname, savedd, pad = 10)
+    preprocessing(impath, imname, jpath, jname, savedd, pad = 0)
