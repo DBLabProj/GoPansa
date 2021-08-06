@@ -1,0 +1,522 @@
+
+*{
+    box-sizing: border-box;
+    /* font-family:'Malgun Gothic'; */
+    font-family:'NanumSquare';
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    border-spacing: 0;
+}
+
+body{
+    overflow-x: hidden;
+}
+article{ /* 내용물 모두 감싸는 상위 박스 */
+    width: 60vw;
+}
+
+/* 헤더 시작 */
+header{     /* 제일 윗 부분 */
+    position: relative;
+    width: 100%;
+    height: 70px;
+    background: #f0f0f0;
+}
+
+
+#small_header{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 15px 50px 10px 50px;
+    text-align: left;
+}
+
+
+
+/* 로고 시작 */
+#logo_box{/* 내일 logo 감싸는 박스 */
+    position: absolute;
+    display: inline-block;
+    max-height: 50px;
+    cursor: pointer;
+
+    left: 3%;
+}
+#logo_box img{
+    float: left;
+    height: 50px;
+    margin-right: 5px;
+}
+#logo_box #logo_txt{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    font-weight: 900;
+    text-align: left;
+}
+#logo_box #logo_txt_left{
+    position: absolute;
+    font-size: 26px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#logo_box #logo_txt_right{
+    position: absolute;
+    left: 42%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-size: 12px;
+    letter-spacing: -1px;
+    line-height: 11px;
+}
+/* 로고 끝 */
+
+
+/* 가운데 탭들 시작*/
+#tab_box{ /* 탭들 감싸는 박스 */
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-left: 50px;
+}
+.tab_item{ /* 탭 각각 글자 박스*/
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    font-weight: 900;
+    margin-right: 50px;
+    cursor: pointer;
+    font-size: 18px;
+}
+/* 가운데 탭들 끝 */
+
+
+/* 탭들 오른쪽 로그인 회원가입 등 시작 */
+#account_box{
+    position: absolute;
+    display: inline-block;
+    padding: 10px;
+    
+    right: 3%;
+}
+.login_item{ /* 학교소개 학교홍보 이런거 각각*/
+    display: inline-block;
+    height: 50px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+}
+/* 탭들 오른쪽 로그인 회원가입 등 끝 */
+/* 헤더 끝 */
+
+
+
+
+#big_contain{ /* 헤더, 푸터 제외 모든 내용 바깥 큰박스 (소개페이지)*/
+    position: relative;
+    width: 100%;
+}
+
+#main_big_img_wrapper{ /* 메인 큰 이미지 박스 */
+    position: relative;
+    height: 600px;
+
+    background-image: url('/static/img/메인화면/메인페이지 배경.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 60%;
+}
+#main_big_img_wrapper > div{ /* 메인 큰 이미지 박스 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* filter: brightness(80%); */
+}
+
+
+#main_big_img_wrapper > div{
+    width: 100%;
+    height: 100%;
+    padding-top: 160px;
+    padding-left: 30px;
+    margin: 0 auto;
+}
+#main_big_img_wrapper p, #main_big_img_wrapper2 p{ /* 메인 큰 이미지 위에 글자 */
+    margin-left: 15%;
+    text-align: left;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 60px;
+}
+
+
+#search_wrapper{
+    position: relative;
+    width: 70%;
+    height: 50px;
+    background: white;
+    border-radius: 25px;
+    margin: 20px auto;
+}
+#search{
+    position: absolute;
+    width: 80%;
+    height: 60%;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    margin: auto 30px;
+
+    border: none;
+}
+#search:focus {
+    outline:none;
+}
+#search::placeholder {
+    color: #b4b2b2;
+    font-size: 16px;
+    font-weight: bold;
+}
+#search_wrapper span{
+    position: absolute;
+    bottom: -30px;
+    left: 30px;
+    color: #b4b2b2;
+    font-weight: bold;
+}
+#search_wrapper img{
+    height: 30px;
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+
+#small_contain{
+    width: 100%;
+    background: #f0f0f0;
+    box-shadow: inset 0 -5px 10px -2px #ccc;
+}
+
+
+
+
+#login_contain{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( to right top, #3d87c2, #33ff33 );
+}
+#login_box{
+    position: absolute;
+    width: 25%;
+    height: 55%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: -1px 1px 100px -50px black, 1px -1px 100px -50px black;
+}
+#login_top{
+    position: relative;
+    width: 100%;
+    height: 12%;
+    background: #1e232e;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+#login_bottom{
+    width: 100%;
+    height: 88%;
+    background: #ededed;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#login_form{
+    position: relative;
+    height: 85%;
+    padding: 12% 1% 5% 1%;
+}
+.login_input_box{
+    width: 75%;
+    height: 15%;
+    margin-bottom: 3%;
+    background: #f0f0f0;
+    border: 1px solid #c7c7c7;
+    border-radius: 20px;
+}
+.login_input_box input{
+    width: 90%;
+    height: 100%;
+    border: none;
+    background: none;
+}
+.login_input_box input[type=password]{
+    font-family: arial;
+}
+.login_input_box input:focus{
+    outline: none;
+}
+.login_input_box input::placeholder{
+    color: #b4b2b2;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+#login_form #save_id{
+    float: left;
+    margin-top: 10px;
+    margin-left: 13%;
+}
+#login_form #save_id span{
+    margin-left: 10px;
+    color: #1e232e;
+    font-size: 14px;
+}
+#login_form #save_id #save_id_chk{
+    display: none;
+    height: 16px;
+}
+#login_form #save_id #save_id_chk + label{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    cursor: pointer;
+    outline: 1px solid #c7c7c7;
+}
+
+#login_form #save_id #save_id_chk:checked + label:after{
+    content: '\2714';
+    font-size: 14px;
+}
+
+
+#login_btn{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+    border-radius: 40px;
+    background: linear-gradient( to right top, #3d87c2, #33ff33 );
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    color: #f0f0f0;
+    line-height: 80px;
+}
+
+/* 로그인 창 맨 아래 회원가입 아이디찾기 비밀번호찾기 */
+#login_bottom > div:nth-child(2){
+    width: 100%;
+    height: 100%;
+}
+#login_bottom > div:nth-child(2) div{
+    display: inline-block;
+    margin: 15px 15px;
+    font-weight: 900;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+
+
+/* 로그인페이지 전용 */
+/* 로고 시작 */
+#login_box #logo_box{/* 내일 logo 감싸는 박스 */
+    position: absolute;
+    display: inline-block;
+    max-height: 50px;
+    cursor: pointer;
+
+    left: 50%;
+    transform: translateX(-50%);
+}
+#login_box #logo_box img{
+    float: left;
+    height: 40px;
+    margin-top: 7px;
+    margin-right: 5px;
+}
+#login_box #logo_box #logo_txt{
+    position: relative;
+    display: inline-block;
+    height: 30px;
+    margin-top: 12px;
+    
+    color: #f6f5f5;
+}
+#login_box #logo_box #logo_txt_left{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    font-size: 26px;
+    font-weight: bold;
+}
+#login_box #logo_box #logo_txt_right{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: 0px;
+    line-height: 12px;
+}
+/* 로고 끝 */
+/* 로그인페이지 전용 */
+
+
+
+.back_line{
+    box-shadow: inset 0 -21px 0 #276EBC;
+}
+
+
+footer{
+    position: relative;
+    width: 100%;
+    height: 180px;
+    font-weight: bold;
+    color: black;
+    font-size: 14px;
+    background: white;
+}
+.footer_tab_box{
+    position: absolute;
+    width: 1200px;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.footer_tab{
+    float: left;
+    margin-right: 50px;
+    color: #1e232e;
+    cursor: pointer;
+}
+.footer_tab_box img{
+    float: right;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+@media ( max-width: 1500px ) {
+    #login_box{
+        position: absolute;
+        width: 40%;
+        height: 55%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: -1px 1px 100px -50px black, 1px -1px 100px -50px black;
+    }
+}
+
+/* 모바일용 (반응형 웹) */
+@media ( max-width: 1025px ) {
+    body{
+        overflow-x: scroll;
+    }
+    article{
+        /* width: 90vw; */
+    }
+    #wordpage_header div{
+        position: relative;
+        width: 100%;
+    }
+    #small_header{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 15px 50px 10px 50px;
+        text-align: left;
+    }
+    .tab_item{ /* 학교소개 학교홍보 이런거 각각*/
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        font-weight: bold;
+        margin-right: 20px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    #login_box{
+        position: absolute;
+        width: 70%;
+        height: 55%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: -1px 1px 100px -50px black, 1px -1px 100px -50px black;
+    }
+
+    #main_big_img_wrapper2 > div{ /* 메인 큰 이미지 박스 */
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        text-align: center;
+        background-color: #000f1a;
+        background-image: url('/static/img/실습 페이지/최종-실습 페이지 배경.png');
+        background-repeat: no-repeat;
+        box-shadow: -25px 0 28px -8px #000f1a inset, 25px 0 28px -8px #000f1a inset;
+        background-size: 100%;
+        background-position: center 50%;
+    }
+    #main_big_img_wrapper > div{
+        width: 100%;
+        height: 100%;
+        padding-top: 160px;
+        padding-left: 30px;
+        margin: 0 auto;
+    }
+    #detail_box{ /* 초청학교 설명회 이런거 있는 큰 박스 */
+        width: 100%;
+        height: 400px;
+        color: #1e232e;
+        padding-top: 150px;
+        font-size: 28px;
+        font-weight: bold;
+        line-height: 38px;
+        text-align: right;
+    }
+
+    #contain_column_box{
+        width: 100%;
+    }
+
+    .footer_tab_box{
+        position: absolute;
+        width: 100%;
+        top: 35%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+  }

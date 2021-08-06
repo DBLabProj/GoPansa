@@ -1,194 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>EASY PIPO</title>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@1.0/nanumbarungothicsubset.css">
-
-    <!-- import jquery -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!------------------->
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- local js & css file import start -->
-    <script src="{{ url_for('static', filename='js/diy_func.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/diy_styles.css') }}">
-
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-    <!-------------------------------------->
-
-    <!-- CSS Loader -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css-loader.css') }}">
-    <!---------------->
-
-
-    <!-- bauettebox -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js" integrity="sha512-7KzSt4AJ9bLchXCRllnyYUDjfhO2IFEWSa+a5/3kPGQbr+swRTorHQfyADAhSlVHCs1bpFdB1447ZRzFyiiXsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
-    <!---------------->
+    <script src = "/static/js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
 
 <body>
-    <div class="loader loader-default" data-text="Converting..."></div>
-    {% include "menu_template.html" %}
+    <center>
+    <article>
 
+        <!-- 헤더 시작 -->
+        <header>
+            <div id="small_header">
+                <!-- <div id="logo_box" onclick="location.href='/'">
+                    <img id='logo_img' src='/static/img/top_bottom/최종logo.png'>
+                    <div id='logo_txt'>
+                        <span id='logo_txt_left'>내일</span>
+                        <span id='logo_txt_right'>Cyber Agis<br>Training Platform</span>
+                    </div>
+                    
+                </div> -->
 
-    <h1 class="sub_title" >Meat Image Classification</h1>
-
-
-
-    <div class="zone">
-        <div id="dropZ">
-            <div class="selectFile">       
-                <label for="file">Browse file</label>                   
-                <input type="file" name="files[]" id="file" accept='image/jpeg,image/png'>
+                <div id='account_box'>
+                    <div class="login_item" onclick="location.href='/로그인.html'" style='color: #53575e'>
+                        로그인
+                    </div>
+                    
+                    <div class="login_item" onclick="location.href='/'" style='color: #5f81bf'>
+                        회원가입
+                    </div>
+                </div>
             </div>
+        </header>
+        <!-- 헤더 끝 -->
+        
 
-            <div class='upload_text'><b>Choose a file</b> or drag it here.</div>
-        </div>
-    </div>
+        <div id="big_contain">
+        
+            <!-- 가운데 큰 그림 시작 -->
+            <div id="main_big_img_wrapper">
+                <div>
+                    <p>대충 고기 등급을 확인 하세요 ~~</p>
+                    <p>이런 말</p>
 
+                    <div id='search_wrapper'>
+                        <input type='text' id='search' placeholder="라벨 코드를 입력해 주세요">
+                        <img src='/static/img/메인화면/search.png'>
+                        <img src='/static/img/메인화면/camera.png'>
 
-    <div class="go_btn" style='display: none'>GO</div>
-
-
-
-
-    <!-- Progress Bar, 개발 중 -->
-    <!-- <div class="vprogress">
-        <div class="circle"><span class="label" title="Popover Header" data-toggle="popover" data-content="Some content inside the popover">1</span> <span class="title">Origin Image</span></div>
-        <div class="circle"><span class="label" title="Popover Header" data-toggle="popover" data-content="Some content inside the popover">2</span> <span class="title">Painting Image</span></div>
-        <div class="circle"><span class="label" title="Popover Header" data-toggle="popover" data-content="Some content inside the popover">3</span> <span class="title">Line Image</span></div>
-        <div class="circle"><span class="label" title="Popover Header" data-toggle="popover" data-content="Some content inside the popover">4</span> <span class="title">Pipo Painting</span></div>
-    </div> -->
-
-
-
-
-
-    <div id='original_img_box' class="view_image_box" style='display: none'>
-        <img id='original_img' class='view_image'>
-        <a class='download_btn' href="#" download><img class='download_btn_img' src="{{ url_for('static', filename='icon/download.png') }}"></a>
-    </div>
-
-
-    <div id='reduce_box' style='display: none'>
-        <table>
-            <tr>
-                <td>You can set the number of colors</td>
-                <td rowspan=2>
-                    <div id='reduce_btn' class='btn_box'>
-                        ▼ Reduce Color
+                        <span>확인 가능한 고기 종류 : 소고기, 돼지고기</span>
                     </div>
-                </td>
-                <td>Color numbering with my color</td>
-            </tr>
-            <tr>
-                <td>
-                    <input class='cluster_number_input' type='text' value=16>
-                    <input class='cluster_number_input' type='text' value=24>
-                    <input class='cluster_number_input' type='text' value=32>
-                </td>
-                <td>
-                    <input id='mycolor_check' type='checkbox'>
-                    <label for='mycolor_check'></label>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div id='reduce_img_box' class="view_image_box" style='display: none'>
-        
-        <table id='reduce_img_privew_table'>
-            <tr>
-                <td>
-                    <div class='color_text'></div>
-                    <a class='download_btn' href="#" download><img class='download_btn_img' src="{{ url_for('static', filename='icon/download.png') }}"></a>
-                </td>
-                <td>
-                    <div class='color_text'></div>
-                    <a class='download_btn' href="#" download><img class='download_btn_img' src="{{ url_for('static', filename='icon/download.png') }}"></a>
-                </td>
-                <td>
-                    <div class='color_text'></div>
-                    <a class='download_btn' href="#" download><img class='download_btn_img' src="{{ url_for('static', filename='icon/download.png') }}"></a>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="radio" id='reduce_input_1' class="reduce_img_select" name="reduce_img_select" value="1"/>
-                    <label id='reduce_img_1' class="reduce_radio_btn" for="reduce_input_1">
-                        <img id='reduce_img_1' class='view_image view_image_reduce' style="visibility: hidden;" >
-                    </label>  
-                </td>
-                <td>
-                    <input type="radio" id='reduce_input_2' class="reduce_img_select" name="reduce_img_select" value="2" checked/>
-                    <label id='reduce_img_2' class="reduce_radio_btn" for="reduce_input_2">
-                        <img id='reduce_img_2' class='view_image view_image_reduce' style="visibility: hidden;" >
-                    </label>
-                </td>
-                <td>
-                    <input type="radio" id='reduce_input_3' class="reduce_img_select" name="reduce_img_select" value="3"/>
-                    <label id='reduce_img_3' class="reduce_radio_btn" for="reduce_input_3">
-                        <img id='reduce_img_3' class='view_image view_image_reduce' style="visibility: hidden;" >
-                    </label>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan=3>
-                    <div class='reduce_img_baguette'>
-                        <a id='a_reduce_input_1' class='a_reduce_input' href="#" data-caption="Image caption">
-                            <img class='preview_btn' src="{{ url_for('static', filename='icon/magnifying-glass.png') }}">
-                        </a>
-
-                        <a id='a_reduce_input_2' class='a_reduce_input' href="#">
-                            <img class='preview_btn' src="{{ url_for('static', filename='icon/magnifying-glass.png') }}">
-                        </a>
-
-                        <a id='a_reduce_input_3' class='a_reduce_input' href="#">
-                            <img class='preview_btn' src="{{ url_for('static', filename='icon/magnifying-glass.png') }}">
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-
-        
-        
-
-    </div>
-
-
-
-    <div id='drawline_btn' class='btn_box' style='display: none'>
-        ▼ Draw Line
-    </div>
-
-    <div id='linedraw_img_box' class="view_image_box" style='display: none'>
-        <img id='linedraw_img' class='view_image'>
-        <a class='download_btn' href="#" download><img class='download_btn_img' src="{{ url_for('static', filename='icon/download.png') }}"></a>
-    </div>
-
-    
-
-    <div id='numbering_btn' class='btn_box' style='display: none'>
-        ▼ Numbering
-    </div>
-
-    <div id='numbering_img_box' class="view_image_box" style='display: none'>
-        <img id='numbering_img' class='view_image'>
-
-        <br>
-
-        <div id='input_color_label_btn' value="Input Color Label" class='btn_box'>Input Color Label</div>
+                </div>
+            </div>
+            <!-- 가운데 큰 그림 끝 -->
             
-
-        <a class='download_btn' href="#" download><img class='download_btn_img' src="{{ url_for('static', filename='icon/download.png') }}"></a>
-    </div>
+        </div>
+        
+   
+        <!-- <footer>
+            <div class='footer_tab_box'>
+                <div class='footer_tab'>ⓒ 내일 Coporation</div>
+                <div class='footer_tab'>도움말</div>
+                <div class='footer_tab'>이용약관</div>
+                <div class='footer_tab'>개인정보 처리방침</div>
+            </div>
+        </footer> -->
+   </article>
+   </center>
 </body>
 </html>
