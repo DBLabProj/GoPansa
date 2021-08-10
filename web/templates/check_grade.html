@@ -5,6 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    
+    <script>
+        $(window).on('load', function(){
+            $("#shot").click(function(){
+                $.ajax({
+                    type: 'POST',
+                    url: '/check_grade',
+                    data: {},
+                    success: function (data) {
+                        console.log("data : ", data);
+                        $("#cam").attr("src", "/static/img/cam/image.jpg");
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -16,7 +35,9 @@
             <div>
                 카메라 화면
             </div>
-            
+            <button id="shot">촬영</button>
+            <img id="cam">
+
         </div>
         
    

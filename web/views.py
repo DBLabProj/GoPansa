@@ -8,6 +8,8 @@ import os
 
 import logging
 
+from raspberry import rasp_control
+
 views = Blueprint("server", __name__)
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
@@ -52,13 +54,19 @@ def grade():
         pass
     
     return render_template("grade.html")
-    
-@views.route("/check_grade", methods=["GET"])
+
+@views.route("/check_grade", methods=["GET", "POST"])
 def check_grade():
-    if "id" not in session:
-        # session["id"] = get_job_id()
-        pass
-    
+    if request.method == "GET":
+        if "id" not in session:
+            # session["id"] = get_job_id()
+            pass
+
+    elif request.method == "POST":
+        rasp_control.shot_cam()
+        rasp_control.get_img()
+        return jsonify(data="success")
+        
     return render_template("check_grade.html")
 
 @views.route("/uploadIMG", methods=["POST"])
