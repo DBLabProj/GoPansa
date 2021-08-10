@@ -38,6 +38,33 @@ def regist():
         pass
     
     return render_template("regist.html")
+
+@views.route("/check_label", methods=["POST"])
+def check_label():
+    label_code = request.form["tcodext"]
+    label_img = request.files["img"]
+
+    print(f'label_text : {label_code}')
+    print(f'label_img : {label_img.filename}')
+
+    is_label_code = label_code == ""
+    is_label_img = label_img.filename == ""
+
+
+    if is_label_code:
+        pass
+
+    elif is_label_img:
+        pass
+
+    else:
+        print("아무것도 안올림 에러")
+
+    # 이미지 업로드 안했을 때
+    if label_img.filename == "":
+        pass
+
+    return jsonify(data="success")
     
 @views.route("/map", methods=["GET"])
 def map():

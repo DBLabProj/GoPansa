@@ -51,11 +51,19 @@
             <div id="search_box" style='display:none'>
                 <div>
                     <div id='search_wrapper'>
-                        <input type='text' id='search' placeholder="라벨 코드를 입력해 주세요">
-                        <img src='/static/img/메인화면/search.png'>
-                        <img src='/static/img/메인화면/camera.png'>
+                        <form id='label_form'>
+                            <input type='text' id='search' name='code' placeholder="라벨 코드를 입력해 주세요">
+                            <img id='search_btn' class='search_img' src='/static/img/메인화면/search.png'>
+                            <div>
+                                <label for="file-input">
+                                    <img class="search_img" src="/static/img/메인화면/camera.png"/>
+                                </label>
+                            
+                                <input id="file-input" type="file" name='img' style="display: none;"/>
+                            </div>
 
-                        <span>확인 가능한 고기 종류 : 소고기, 돼지고기</span>
+                            <span>확인 가능한 고기 종류 : 소고기, 돼지고기</span>
+                        </form>
                     </div>
                 </div>
             </div>
