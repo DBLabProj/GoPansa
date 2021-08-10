@@ -15,7 +15,8 @@
                     data: {},
                     success: function (data) {
                         console.log("data : ", data);
-                        $("#cam").attr("src", "/static/img/cam/image.jpg");
+                        var time = new Date().getTime();
+                        $("#cam").attr("src", "/static/img/cam/image.jpg"+'?time='+time);
                     },
                     error: function (error) {
                         console.error(error);

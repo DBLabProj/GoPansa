@@ -9,7 +9,7 @@ file_name = "image.jpg"
 file_path = f"/home/pi/project/meat/{file_name}"
 
 def shot_cam():
-    os.system(f"plink -batch -pw {rasp_pw} -P {rasp_port} {rasp_id}@{rasp_ip} fswebcam {file_name}")
+    os.system(f"plink -batch -pw {rasp_pw} -P {rasp_port} {rasp_id}@{rasp_ip} fswebcam {file_path}")
 
 def get_img():
     os.system(f"pscp -batch -pw {rasp_pw} -P {rasp_port} {rasp_id}@{rasp_ip}:{file_path} {os.getcwd()}/web/static/img/cam")
