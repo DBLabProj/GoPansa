@@ -14,6 +14,11 @@ views = Blueprint("server", __name__)
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
+def getSql():
+    return Sql( "203.252.240.74", 
+                "classify_meat", 
+                "dblab", 
+                "dblab6100" )
 
 @views.route("/", methods=["GET"])
 def index():
@@ -25,11 +30,28 @@ def index():
 
 @views.route("/login", methods=["GET"])
 def login():
-    if "id" not in session:
-        # session["id"] = get_job_id()
-        pass
+    sql = getSql()
+    id = request.form["email"]
+    pw = request.form["pass"]
+    result = sql.login( id, pw)
     
-    return render_template("login.html")
+    if result == 1:
+        if "id" not in session:
+            session["id"] = get_job_id()
+            pass
+        return render_template("index.html")
+        
+    elif result ==2:
+        print("아이디가 존재하지 않습니다.")
+        return render_template("login.html")
+        
+    elif result == 3:
+        print("비밀번호가 일치하지 않습니다.")
+        return render_template("login.html")
+        
+    elif result == 4:
+        print("서비스 상태가 좋지 못합니다.\n다시 시도해주세요.")
+        return render_template("login.html")
 
 @views.route("/join", methods=["POST"])
 def join():
@@ -42,10 +64,7 @@ def join():
     b_name = request.form["store"]
     
     print("type:", b_type)
-    sql = Sql( "203.252.240.74", 
-                "classify_meat", 
-                "dblab", 
-                "dblab6100" )
+    sql = getSql()
                 
     if sql.is_id_exist(id):
         print("이미 사용중인 아이디입니다.")
