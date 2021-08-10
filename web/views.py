@@ -7,7 +7,7 @@ from flask import Flask, request, render_template, jsonify, Blueprint, redirect,
 import os
 
 import logging
-
+from static.db import control_sql
 from raspberry import rasp_control
 
 views = Blueprint("server", __name__)
@@ -31,32 +31,44 @@ def login():
     
     return render_template("login.html")
 
-@views.route("/regist", methods=["GET"])
-def regist():
+@views.route("/join", methods=["GET"])
+def join():
+    id = request.form["ID"]
+    pw = request.files["pass"]
+    pwc = request.files["passck"]
+    phone = request.files["PHONE"]
+    b_type = request.files["kinds"]
+    b_name = request.files["store"]
+    
+    
+    
     if "id" not in session:
-        # session["id"] = get_job_id()
+        session["id"] = get_job_id()
         pass
     
+    return render_template("index.html")
+
+@views.route("/regist", methods=["GET"])
+def regist():
     return render_template("regist.html")
+
 
 @views.route("/check_label", methods=["POST"])
 def check_label():
-    label_code = request.form["code"]
+    label_code = request.form["tcodext"]
     label_img = request.files["img"]
 
     print(f'label_text : {label_code}')
     print(f'label_img : {label_img.filename}')
 
-    is_label_code = not(label_code == "")
-    is_label_img = not(label_img.filename == "")
+    is_label_code = label_code == ""
+    is_label_img = label_img.filename == ""
 
 
     if is_label_code:
-        print("코드 받음")
         pass
 
     elif is_label_img:
-        print("이미지 받음")
         pass
 
     else:
