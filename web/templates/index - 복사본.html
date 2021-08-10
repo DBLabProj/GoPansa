@@ -10,7 +10,7 @@
 
 <body>
     <!--Trigger-->
-    <!-- <a class="login-trigger" href="#" data-target="#login" data-toggle="modal">Login</a>
+    <a class="login-trigger" href="#" data-target="#login" data-toggle="modal">Login</a>
 
     <div id="login" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -27,29 +27,46 @@
         </div>
         </div>
     </div>  
-    </div> -->
+    </div>
 
 
     <center>
     <article>
-        {% include "menu_template.html" %}
 
-        <div id="big_contain">
-            <!-- 가운데 큰 그림 시작 -->
-            <div id="top_article">
-                <img src="/static/img/메인화면/메인페이지 배경.png">
-                <div>
-                    <p style="font-size: 24px; line-height: 40px">고기등급 이젠<br>내가 보고 사자!</p>
-                    <p style="margin: 30px 0; font-size:14px">어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구<br>어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구</p>
+        <!-- 헤더 시작 -->
+        <header>
+            <div id="small_header">
+                <!-- <div id="logo_box" onclick="location.href='/'">
+                    <img id='logo_img' src='/static/img/top_bottom/최종logo.png'>
+                    <div id='logo_txt'>
+                        <span id='logo_txt_left'>내일</span>
+                        <span id='logo_txt_right'>Cyber Agis<br>Training Platform</span>
+                    </div>
+                    
+                </div> -->
 
-                    <button id="check_grade">등급 책정하러 가기</button>
+                <div id='account_box'>
+                    <div class="login_item" onclick="location.href='/로그인.html'" style='color: #53575e'>
+                        로그인
+                    </div>
+                    
+                    <div class="login_item" onclick="location.href='/'" style='color: #5f81bf'>
+                        회원가입
+                    </div>
                 </div>
             </div>
-            <!-- 가운데 큰 그림 끝 -->
-
+        </header>
+        <!-- 헤더 끝 -->
         
-            <div id="search_box" style='display:none'>
+
+        <div id="big_contain">
+        
+            <!-- 가운데 큰 그림 시작 -->
+            <div id="main_big_img_wrapper">
                 <div>
+                    <p>대충 고기 등급을 확인 하세요 ~~</p>
+                    <p>이런 말</p>
+
                     <div id='search_wrapper'>
                         <input type='text' id='search' placeholder="라벨 코드를 입력해 주세요">
                         <img src='/static/img/메인화면/search.png'>
@@ -59,10 +76,7 @@
                     </div>
                 </div>
             </div>
-
-            <div>
-                hihihi
-            </div>
+            <!-- 가운데 큰 그림 끝 -->
             
         </div>
         

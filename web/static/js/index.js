@@ -4,45 +4,12 @@ function close_btn(target){
     $(".go_btn").hide();
 }
 
-
-
-// Progress Bar, 개발 중
-
-// $( document ).ready(function() {
-//     $('[data-toggle="popover"]').popover();
-//     var i = 1;
-//     $('.vprogress .circle').removeClass().addClass('circle');
-//     $('.vprogress .bar').removeClass().addClass('bar');
-//     setInterval(function() {
-//         $('.vprogress .circle:nth-of-type(' + i + ')').addClass('active');
-        
-//         $('.vprogress .circle:nth-of-type(' + (i-1) + ')').removeClass('active').addClass('done');
-        
-//         $('.vprogress .circle:nth-of-type(' + (i-1) + ') .label').html('✓');
-        
-//         $('.vprogress .bar:nth-of-type(' + (i-1) + ')').addClass('active');
-        
-//         $('.vprogress .bar:nth-of-type(' + (i-2) + ')').removeClass('active').addClass('done');
-        
-//         i++;
-        
-//         if (i==0) {
-//             $('.vprogress .bar').removeClass().addClass('bar');
-//             $('.vprogress div.circle').removeClass().addClass('circle');
-//             i = 1;
-//         }
-//     }, 1000);
-// });
-
-
-
-
-
 $(window).on('load', function(){
-
-    var ori_image_path = null;
-    var ren_image_path = null;
-
+    $("#check_grade").click(function(){
+        // $("#search_box").show("slow");
+        $("#search_box").toggle("slow");
+    });
+    
     $('.zone').on("dragover", dragOver).on("drop", uploadFiles);
                 
     $("#file").change(function(e){
@@ -99,65 +66,6 @@ $(window).on('load', function(){
         selectFile(files, e);
     }
 
-
-    function do_image_job(job, next_btn, image_path){
-        $('.loader').addClass('is-active');
-        var reduce_data = "";
-
-        if(job == "reduce_color"){
-            $('.cluster_number_input').each(function(){
-                reduce_data += $(this).val()+",";
-            });
-            reduce_data += $("#mycolor_check").is(":checked");
-        }
-        else if(job == "draw_line"){
-            reduce_data = $("input[name='reduce_img_select']:checked").val();
-            
-        }
-        else{
-            reduce_data = -1;
-        }
-
-        $.ajax({
-            url: '/convert',
-            data: {"job":job, "image_path": image_path, "reduce_data":reduce_data},
-            dataType:'json',
-            type: 'POST',
-            success: function (data) {
-                $(data.target+'_box').show();
-
-                var time = new Date().getTime();
-
-                if(job == "reduce_color"){
-                    var img_name = data.img_name.split(".")[0];
-                    $(data.target+"_1"+" img").attr('src', '/static/render_image/'+img_name+'_1.'+data.img_name.split(".")[1]+'?time='+time);
-                    $(data.target+"_2"+" img").attr('src', '/static/render_image/'+img_name+'_2.'+data.img_name.split(".")[1]+'?time='+time);
-                    $(data.target+"_3"+" img").attr('src', '/static/render_image/'+img_name+'_3.'+data.img_name.split(".")[1]+'?time='+time);
-                    
-                    $(data.target+"_1").css('background-image', 'url(/static/render_image/'+img_name+'_1.'+data.img_name.split(".")[1]+'?time='+time+')');
-                    $(data.target+"_2").css('background-image', 'url(/static/render_image/'+img_name+'_2.'+data.img_name.split(".")[1]+'?time='+time+')');
-                    $(data.target+"_3").css('background-image', 'url(/static/render_image/'+img_name+'_3.'+data.img_name.split(".")[1]+'?time='+time+')');
-                    
-                    $(".color_text").each(function(i){
-                        $(this).text(data.clusters[i] + " Color");
-                    });
-                }
-                else{
-                    $(data.target).attr('src', '/static/render_image/'+data.img_name+'?time='+time);
-                }
-
-                $(next_btn).show();
-
-                $('.loader').removeClass('is-active');
-
-                $('html,body').animate({ scrollBottom: 300 }, 'slow'); // 9999
-            },
-            error: function (error) {
-                console.error(error);
-            }
-        });
-    }
-    
     
     function selectFile(fileObject, e){
         var files = null;
@@ -303,13 +211,3 @@ $(window).on('load', function(){
         }
     }
 });
-
-
-
-
-function distanceBetween(point1, point2) {
-    return Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
-}
-function angleBetween(point1, point2) {
-    return Math.atan2( point2.x - point1.x, point2.y - point1.y );
-}

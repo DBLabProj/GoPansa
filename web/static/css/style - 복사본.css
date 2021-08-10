@@ -7,8 +7,6 @@
     padding: 0;
     white-space: nowrap;
     border-spacing: 0;
-    /* transition: all 1000ms;
-    -webkit-transition: all 1000ms; */
 }
 
 body{
@@ -23,6 +21,7 @@ header{     /* 제일 윗 부분 */
     position: relative;
     width: 100%;
     height: 70px;
+    background: #f0f0f0;
 }
 
 
@@ -30,23 +29,49 @@ header{     /* 제일 윗 부분 */
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 10px 0px 10px 0px;
+    padding: 15px 50px 10px 50px;
     text-align: left;
 }
 
 
 
 /* 로고 시작 */
-#logo_box{/* logo 감싸는 박스 */
+#logo_box{/* 내일 logo 감싸는 박스 */
     position: absolute;
     display: inline-block;
     max-height: 50px;
     cursor: pointer;
+
+    left: 3%;
 }
 #logo_box img{
     float: left;
     height: 50px;
     margin-right: 5px;
+}
+#logo_box #logo_txt{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    font-weight: 900;
+    text-align: left;
+}
+#logo_box #logo_txt_left{
+    position: absolute;
+    font-size: 26px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#logo_box #logo_txt_right{
+    position: absolute;
+    left: 42%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-size: 12px;
+    letter-spacing: -1px;
+    line-height: 11px;
 }
 /* 로고 끝 */
 
@@ -55,15 +80,15 @@ header{     /* 제일 윗 부분 */
 #tab_box{ /* 탭들 감싸는 박스 */
     position: absolute;
     display: inline-block;
-    /* left: 50%;
-    transform: translateX(-50%); */
-    margin-left: 120px;
+    left: 50%;
+    transform: translateX(-50%);
     padding-left: 50px;
 }
 .tab_item{ /* 탭 각각 글자 박스*/
     display: inline-block;
     height: 50px;
     line-height: 50px;
+    font-weight: 900;
     margin-right: 50px;
     cursor: pointer;
     font-size: 18px;
@@ -75,24 +100,17 @@ header{     /* 제일 윗 부분 */
 #account_box{
     position: absolute;
     display: inline-block;
-    height: 50px;
     padding: 10px;
-    right: 0;
+    
+    right: 3%;
 }
-.login_item{ 
+.login_item{ /* 학교소개 학교홍보 이런거 각각*/
     display: inline-block;
+    height: 50px;
     margin-left: 15px;
-    height: 30px;
-    line-height: 30px;
     cursor: pointer;
     font-size: 14px;
-    color: #53575e;
-    font-weight: 600;
-}
-
-.login_item:hover{ 
-    color: rgb(255, 180, 0);
-    font-weight: 600;
+    text-decoration: underline;
 }
 /* 탭들 오른쪽 로그인 회원가입 등 끝 */
 /* 헤더 끝 */
@@ -105,72 +123,58 @@ header{     /* 제일 윗 부분 */
     width: 100%;
 }
 
-#top_article{
+#main_big_img_wrapper{ /* 메인 큰 이미지 박스 */
     position: relative;
-    width: 100%;
-    height: 350px;
-    background: rgb(255, 180, 0);
-}
+    height: 600px;
 
-#top_article > img{
-    object-fit: cover;
-}
-#top_article > *{
-    display: inline-block;
-    vertical-align: top;
-    width: 50%;
-    height: 100%;
-}
-#top_article > div{
-    padding: 60px;
-    color: white;
-    text-align: left;
-}
-#check_grade{
-    width: 160px;
-    height: 35px;
-    border: solid 1px white;
-    background: none;
-    color: white;
-    cursor: pointer;
-}
-
-#search_box{ 
-    position: relative;
-    height: 100px;
-
-    /* background-image: url('/static/img/메인화면/메인페이지 배경.png');
+    background-image: url('/static/img/메인화면/메인페이지 배경.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center 60%; */
+    background-position: center 60%;
 }
-#search_box > div{ /* 메인 큰 이미지 박스 */
+#main_big_img_wrapper > div{ /* 메인 큰 이미지 박스 */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    margin: 0 auto;
     text-align: left;
     background-color: rgba(0, 0, 0, 0.3);
     /* filter: brightness(80%); */
 }
 
 
+#main_big_img_wrapper > div{
+    width: 100%;
+    height: 100%;
+    padding-top: 160px;
+    padding-left: 30px;
+    margin: 0 auto;
+}
+#main_big_img_wrapper p, #main_big_img_wrapper2 p{ /* 메인 큰 이미지 위에 글자 */
+    margin-left: 15%;
+    text-align: left;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 60px;
+}
+
+
 #search_wrapper{
     position: relative;
-    width: 80%;
+    width: 70%;
     height: 50px;
     background: white;
     border-radius: 25px;
-    margin: 25px auto;
+    margin: 20px auto;
 }
 #search{
     position: absolute;
-    width: 70%;
+    width: 80%;
     height: 60%;
     top: 50%;
-    left: 35%;
+    left: 40%;
     transform: translate(-50%, -50%);
     margin: auto 30px;
 

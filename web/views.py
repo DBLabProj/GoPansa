@@ -21,6 +21,46 @@ def index():
     
     return render_template("index.html")
 
+@views.route("/login", methods=["GET"])
+def login():
+    if "id" not in session:
+        # session["id"] = get_job_id()
+        pass
+    
+    return render_template("login.html")
+
+@views.route("/regist", methods=["GET"])
+def regist():
+    if "id" not in session:
+        # session["id"] = get_job_id()
+        pass
+    
+    return render_template("regist.html")
+    
+@views.route("/map", methods=["GET"])
+def map():
+    if "id" not in session:
+        # session["id"] = get_job_id()
+        pass
+    
+    return render_template("map.html")
+    
+@views.route("/grade", methods=["GET"])
+def grade():
+    if "id" not in session:
+        # session["id"] = get_job_id()
+        pass
+    
+    return render_template("grade.html")
+    
+@views.route("/check_grade", methods=["GET"])
+def check_grade():
+    if "id" not in session:
+        # session["id"] = get_job_id()
+        pass
+    
+    return render_template("check_grade.html")
+
 @views.route("/uploadIMG", methods=["POST"])
 def upload_img():
     if 'file' not in request.files:
