@@ -7,7 +7,7 @@ from flask import Flask, request, render_template, jsonify, Blueprint, redirect,
 import os
 
 import logging
-from static.db import control_sql
+from .db.control_sql import Sql
 from raspberry import rasp_control
 
 views = Blueprint("server", __name__)
@@ -31,16 +31,38 @@ def login():
     
     return render_template("login.html")
 
-@views.route("/join", methods=["GET"])
+@views.route("/join", methods=["POST"])
 def join():
     id = request.form["ID"]
-    pw = request.files["pass"]
-    pwc = request.files["passck"]
-    phone = request.files["PHONE"]
-    b_type = request.files["kinds"]
-    b_name = request.files["store"]
+    pw = request.form["pass"]
+    pwc = request.form["passck"]
+    phone = request.form["PHONE"]
+    username = request.form["username"]
+    b_type = request.form["kinds"]
+    b_name = request.form["store"]
     
+    print("type:", b_type)
+    sql = Sql( "203.252.240.74", 
+                "classify_meat", 
+                "dblab", 
+                "dblab6100" )
+                
+    if sql.is_id_exist(id):
+        print("이미 사용중인 아이디입니다.")
+        return  render_template("regist.html")
     
+    if pw != pwc:
+        print("비밀번호를 다시 확인해주세요.")
+        return  render_template("regist.html")
+    
+    if not sql.register(id, pw, name, phone ):
+        print("이미 사용중인 아이디입니다.")
+        return  render_template("regist.html")
+    
+    # success
+    if not sql.register(id, pw, username, phone, email=None):
+        print("서비스 상태가 좋지 못합니다.\n다시 시도해주세요.")
+        return  render_template("regist.html")
     
     if "id" not in session:
         session["id"] = get_job_id()
