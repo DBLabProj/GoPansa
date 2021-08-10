@@ -41,20 +41,22 @@ def regist():
 
 @views.route("/check_label", methods=["POST"])
 def check_label():
-    label_code = request.form["tcodext"]
+    label_code = request.form["code"]
     label_img = request.files["img"]
 
     print(f'label_text : {label_code}')
     print(f'label_img : {label_img.filename}')
 
-    is_label_code = label_code == ""
-    is_label_img = label_img.filename == ""
+    is_label_code = not(label_code == "")
+    is_label_img = not(label_img.filename == "")
 
 
     if is_label_code:
+        print("코드 받음")
         pass
 
     elif is_label_img:
+        print("이미지 받음")
         pass
 
     else:
