@@ -10,7 +10,7 @@ $(window).on('load', function(){
         $("#search_box").toggle("slow");
     });
 
-    $("#label_form").click(function(){
+    $("#search_btn").click(function(){
 		// Get form
 		var form = $('#label_form')[0];
 
