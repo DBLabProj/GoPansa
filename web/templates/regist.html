@@ -78,7 +78,8 @@
 					</div>
 					
 					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="text" name="store" placeholder="상호명">
+						<input class="input100" type="text" name="store" id="store_input"
+						placeholder="상호명" onkeyup="find_store();">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -119,8 +120,24 @@
 
 </body>
 <script>
-// 
+// 업체명 입력하면 디비에 저장된 업체 정보중 입력된 값과 일치하는 정보 불러와줌
+function find_store(){
+	var store_name = document.getElementById("store_input").value;
+	console.log(store_name);
+	
+	$.ajax({
+		type: "POST", 
+		url:"/findStore",
+		dataType:"JSON", 
+		data:{store: store_name
+		},
+		success : function(data){
+		
+			console.log(data.result);
+		}
+	});
 
+}
 
 
 
