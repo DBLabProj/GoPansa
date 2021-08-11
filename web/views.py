@@ -28,65 +28,34 @@ def index():
     
     return render_template("index.html")
 
-@views.route("/login", methods=["GET"])
+@views.route("/login", methods=["GET", "POST"])
 def login():
-    sql = getSql()
-    id = request.form["email"]
-    pw = request.form["pass"]
-    result = sql.login( id, pw)
-    
-    if result == 1:
-        if "id" not in session:
-            session["id"] = get_job_id()
-            pass
-        return render_template("index.html")
-        
-    elif result ==2:
-        print("아이디가 존재하지 않습니다.")
+    if request.method == "GET":
         return render_template("login.html")
         
-    elif result == 3:
-        print("비밀번호가 일치하지 않습니다.")
-        return render_template("login.html")
+    elif request.method == "POST":
+        sql = getSql()
+        id = request.form["email"]
+        pw = request.form["pass"]
+        result = sql.login( id, pw)
         
-    elif result == 4:
-        print("서비스 상태가 좋지 못합니다.\n다시 시도해주세요.")
-        return render_template("login.html")
+        if result == 1:
+            if "id" not in session:
+                session["id"] = get_job_id()
+                pass
+            return render_template("index.html")
+            
+        elif result ==2:
+            print("아이디가 존재하지 않습니다.")
+            return render_template("login.html")
+            
+        elif result == 3:
+            print("비밀번호가 일치하지 않습니다.")
+            return render_template("login.html")
+            
+        elif result == 4:
+            print("서비스 상태가 좋지 못합니다.\n다시 시도해주세요.")
 
-@views.route("/join", methods=["POST"])
-def join():
-    id = request.form["ID"]
-    pw = request.form["pass"]
-    pwc = request.form["passck"]
-    phone = request.form["PHONE"]
-    username = request.form["username"]
-    b_type = request.form["kinds"]
-    b_name = request.form["store"]
-    
-    sql = getSql()
-                
-    if sql.is_id_exist(id):
-        print("이미 사용중인 아이디입니다.")
-        return  render_template("regist.html")
-    
-    if pw != pwc:
-        print("비밀번호를 다시 확인해주세요.")
-        return  render_template("regist.html")
-    
-    if not sql.register(id, pw, name, phone ):
-        print("이미 사용중인 아이디입니다.")
-        return  render_template("regist.html")
-    
-    # success
-    if not sql.register(id, pw, username, phone, email=None):
-        print("서비스 상태가 좋지 못합니다.\n다시 시도해주세요.")
-        return  render_template("regist.html")
-    
-    if "id" not in session:
-        session["id"] = get_job_id()
-        pass
-    
-    return render_template("index.html")
 
 @views.route("/findStore", methods=["POST"])
 def findStore():
@@ -98,9 +67,44 @@ def findStore():
     return jsonify(result = store_list)
 
 
-@views.route("/regist", methods=["GET"])
+@views.route("/regist", methods=["GET", "POST"])
 def regist():
-    return render_template("regist.html")
+    if request.method == "GET":
+        return render_template("regist.html")
+    
+    elif request.method == "POST":
+        id = request.form["ID"]
+        pw = request.form["pass"]
+        pwc = request.form["passck"]
+        phone = request.form["PHONE"]
+        username = request.form["username"]
+        b_type = request.form["kinds"]
+        b_name = request.form["store"]
+        
+        sql = getSql()
+                    
+        if sql.is_id_exist(id):
+            print("이미 사용중인 아이디입니다.")
+            return  render_template("regist.html")
+        
+        if pw != pwc:
+            print("비밀번호를 다시 확인해주세요.")
+            return  render_template("regist.html")
+        
+        if not sql.register(id, pw, name, phone ):
+            print("이미 사용중인 아이디입니다.")
+            return  render_template("regist.html")
+        
+        # success
+        if not sql.register(id, pw, username, phone, email=None):
+            print("서비스 상태가 좋지 못합니다.\n다시 시도해주세요.")
+            return  render_template("regist.html")
+        
+        if "id" not in session:
+            session["id"] = get_job_id()
+            pass
+        return redirect('/')
+
 
 
 @views.route("/check_label", methods=["POST"])
@@ -179,7 +183,7 @@ def upload_img():
         if file:
             # filename = secure_filename(file.filename) # secure_filename은 한글명을 지원하지 않음
             filename = file.filename 
-            filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+            filepath = os.path.join("web/static/img/cam", filename)
             filepath = filepath.replace("\\", "/")
             # file_page_path = os.path.splitext(filepath)[0]
             
