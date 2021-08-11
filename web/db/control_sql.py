@@ -130,3 +130,27 @@ class Sql:
             print(e) 
         
         return result
+        
+        
+    def getStoreList(self, storeName):
+        sql = "\
+            SELECT cb_number, business_name \
+            FROM restaurant \
+            WHERE business_name LIKE '%"+storeName+"%';\
+            "
+        # print(sql)
+        storeList = []
+        try:
+            self.__cursor.execute(sql)
+            storeList = self.__cursor.fetchall()
+            # storeList = [x for x in self.__cursor.fetchall()]
+            
+            # print("storeList>>",len(storeList))
+            # return storeList
+        except pymysql.Error as e:
+            print(e)
+            return ["현재 서비스에 장애가 발생하였습니다."]
+            
+        return storeList
+            
+        
