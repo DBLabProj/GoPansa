@@ -25,6 +25,12 @@
             });
         });
     </script>
+    <style>
+        *{
+            transition: all 1000ms;
+            -webkit-transition: all 1000ms;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,11 +39,25 @@
         {% include "menu_template.html" %}
 
         <div id="big_contain">
-            <div>
+            <!-- <div>
                 카메라 화면
             </div>
             <button id="shot">촬영</button>
-            <img id="cam">
+            <img id="cam"> -->
+
+            
+            <div class="zone">
+                <div id="dropZ">
+                    <div class="selectFile">       
+                        <label for="file">사진 찾아보기</label>                   
+                        <input type="file" name="files[]" id="file" capture="camera" accept='image/jpeg,image/png'>
+                    </div>
+
+                    <div class='upload_text'>육류 사진을 선택하거나 드래그하세요.</div>
+                </div>
+            </div>
+
+            <div class="classify_btn" style='display: none'>측정</div>
 
         </div>
         
@@ -52,5 +72,159 @@
         </footer> -->
    </article>
    </center>
+   <script>
+        function close_btn(target){
+            $(".fileBox").remove();
+            $("#file").val(null);
+            $(".classify_btn").hide();
+        }
+        $(window).on('load', function(){
+
+            var ori_image_path = null;
+            var ren_image_path = null;
+        
+            $('.zone').on("dragover", dragOver).on("drop", uploadFiles);
+                        
+            $("#file").change(function(e){
+                uploadFiles(e);
+            });
+        
+            function dragOver(e) {
+                if($(e.target).get(0) != $('#file').get(0)){
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+        
+                var dropZone = $('.zone'),
+                    timeout = window.dropZoneTimeout;
+                if (!timeout) {
+                    dropZone.addClass('in');
+                }
+                else {
+                    clearTimeout(timeout);
+                }
+                var found = false,
+                    node = e.target;
+        
+                do {
+                    if (node === dropZone[0]) {
+                        found = true;
+                        break;
+                    }
+                    node = node.parentNode;
+                } while (node != null);
+        
+                if (found) {
+                    dropZone.addClass('hover');
+                }
+                else {
+                    dropZone.removeClass('hover');
+                }
+                window.dropZoneTimeout = setTimeout(function () {
+                    window.dropZoneTimeout = null;
+                    dropZone.removeClass('in hover');
+                }, 100);
+            }
+        
+            function uploadFiles(e) {
+                if($(e.target).get(0) != $('#file').get(0)){
+                    e.stopPropagation();
+                    e.preventDefault();
+                    dragOver(e);
+                }
+                
+                e.dataTransfer = e.originalEvent.dataTransfer;
+                var files = e.target.files || e.dataTransfer.files;
+        
+                selectFile(files, e);
+            }
+            
+            function selectFile(fileObject, e){
+                var files = null;
+        
+                if(fileObject == undefined){
+        
+                }
+        
+                if(fileObject != null){
+                    files = fileObject;
+                }
+                else{
+                    files = $("#file").files;
+                }
+        
+                if(files != null && files[0] != undefined){
+                    if (files.length > 1 || $("#dropZ .fileBox").length>0 ){
+                        alert('파일은 1개만 업로드할 수 있습니다.');
+                        return;
+                    }
+        
+                    if (files[0].type==='image/jpeg' || files[0].type==='image/png') {
+                        $(".classify_btn").show();
+                        $(".view_image_box").hide();
+                        $(".btn_box").hide();
+        
+        
+                        $(".zone").css({"outline": "none"});
+        
+                        $('.view_image_box,.view_image_box').hide();
+        
+                        var tag = '';
+                        var f = files[0];
+                        var fileName = f.name;
+                        var fileSize = f.size / 1024 / 1024;
+                        fileSize = fileSize < 1 ? fileSize.toFixed(3) : fileSize.toFixed(1);
+        
+                        tag += 
+                            "<div class='fileBox'>" +
+                                "<image id='thumbnail'>" +
+                                "<span class='x_btn' onclick='close_btn(this);'>x</span>" +
+                                "<div class='filename_text'>"+fileName+"<br>"+fileSize+" MB</div>" +
+                            "</div>";
+        
+                        $("#non-upload-box").css("display", "none");
+                        $("#dropZ").append(tag);
+        
+                        $('html,body').animate({ scrollTop: 9999 }, 'slow');
+        
+                        var reader = new FileReader();
+                        reader.onload = function(e){
+                            $("#thumbnail").attr("src", e.target.result);
+                        }
+                        reader.readAsDataURL(f);
+        
+                        $('.classify_btn').click(function(){
+                            var formData = new FormData();
+                            formData.append("file", f);
+        
+                            $.ajax({
+                                type: 'POST',
+                                url: '/uploadIMG',
+                                processData: false,
+                                contentType: false,
+                                xhrFields: {
+                                    withCredentials: true
+                                },
+                                data: formData,
+                                success: function (data) {
+                                    if(data.message == "Files successfully uploaded"){
+                                    }
+                                },
+                                error: function (error) {
+                                    console.error(error);
+                                }
+                            });
+                        });
+                    }
+                    else{
+                        alert('이미지 파일만 업로드할 수 있습니다.');
+                        $("#file").val(null);
+                        return;
+                    }
+                }
+            }
+        });
+    
+   </script>
 </body>
 </html>

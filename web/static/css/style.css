@@ -16,6 +16,7 @@ body{
 }
 article{ /* 내용물 모두 감싸는 상위 박스 */
     width: 60vw;
+    padding-bottom: 200px;
 }
 
 /* 헤더 시작 */
@@ -126,23 +127,191 @@ header{     /* 제일 윗 부분 */
     color: white;
     text-align: left;
 }
+
+
+/* 등급 측정 페이지 시작 */
 #check_grade{
-    width: 160px;
-    height: 35px;
+    width: 180px;
+    height: 40px;
     border: solid 1px white;
     background: none;
+    font-size: 18px;
     color: white;
     cursor: pointer;
 }
 
+.zone {
+    position: relative;
+    margin: auto;
+    width: 50%;
+    height: fit-content;
+    border: 2px solid rgb(255, 180, 0);
+    border-radius: 25px;
+    text-align:center;
+    z-index: 20;
+    transition: all 0.3s ease-out;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.05),inset 0 0 .25em 0 rgba(0,0,0,.25);
+    cursor: pointer;
+}
+.zone #dropZ{
+    position: relative;
+    height: 100%;
+}
+.zone .btnCompression .active{
+    background: rgb(255, 180, 0);
+    color:white;
+}
+.zone i{
+    text-align: center;
+    font-size: 10em;  
+    color:#fff;
+    margin-top: 50px;
+}
+.zone .selectFile {
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 100px;
+    margin: 0 auto;
+}
+.zone .upload_text{
+    display: inline-block;
+    height: 100px;
+    line-height: 100px;
+    margin: 0 10px;
+    vertical-align: top;
+    font-family: corbellight;
+    font-weight: bold;
+}
+.zone label input {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    border-radius: 5px;
+    cursor: pointer;  
+}
+.zone label {
+    position: absolute;
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    padding: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgb(255, 180, 0);
+    color: white;
+    border-radius: 10px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+    white-space: nowrap;
+    box-shadow: 0 1px 1px gray;
+    cursor: pointer;
+}
+
+.zone input[type=file] {
+    opacity: 0;
+}
+.zone .in {
+    color:white;
+    border-color:white;
+    background: radial-gradient(ellipse at center,rgb(255, 180, 0) 0,rgb(255, 180, 0) 100%);
+}
+.zone .in i {          
+    color:#fff;
+}
+.zone .in label {
+    background: #fff;
+    color: rgb(255, 180, 0);
+}
+.zone.hover {
+    color:gray;
+    border-color:white;
+    background:#fff;
+    border:5px dashed gray;
+}
+.zone.hover i {          
+    color:rgb(255, 180, 0);
+}
+.zone.hover label {
+    background: #fff;
+    color:rgb(255, 180, 0);
+}
+.zone.fade {
+    transition: all 0.3s ease-out;
+    opacity: 1;
+}
+.fileBox{
+    position: relative;
+    width: 90%;
+    height: fit-height;
+    margin: 30px auto;
+    padding: 15px;
+    
+    border: 2px solid rgb(255, 180, 0);
+
+    border-radius: 20px;
+    background: white;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(255, 180, 0);
+
+    box-shadow: 3px 3px #a8a8a8;
+}
+.fileBox span:not(.x_btn):not(.filename_text){
+    position: absolute;
+    text-align: left;
+    left: 50%;
+    top: 50%;
+    transform: translate(-40%, -50%);
+}
+.fileBox img{
+    display: inline-block;
+    width: 100px;
+    margin-right: 20px;
+    left: 0;
+    /* height: 85%; */
+}
+.x_btn{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.filename_text{
+    display: inline-block;
+    width: 480px;
+    margin: auto;
+    font-size: 14px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow:hidden;
+}
+.classify_btn{
+    width: 100px;
+    height: 100px;
+    border: 5px solid rgba(255, 180, 0);
+    border-radius: 50px;
+    line-height: 90px;
+    font-size: 20pt;
+    font-family: arialblack;
+    margin: 50px auto;
+    cursor: pointer;
+}
+.classify_btn:hover{
+    background: rgb(255, 180, 0);
+    color: white;
+}
+/* 등급 측정 페이지 끝 */
+
+
 #search_box{ 
     position: relative;
     height: 150px;
-
-    /* background-image: url('/static/img/메인화면/메인페이지 배경.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center 60%; */
 }
 #search_box > div{ /* 메인 큰 이미지 박스 */
     position: absolute;
@@ -153,7 +322,6 @@ header{     /* 제일 윗 부분 */
     margin: 0 auto;
     text-align: left;
     background-color: rgba(0, 0, 0, 0.3);
-    /* filter: brightness(80%); */
 }
 
 

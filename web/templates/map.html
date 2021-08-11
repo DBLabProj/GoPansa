@@ -229,7 +229,6 @@
 
         
         let showInfoWindow = function() {
-            marker.animate(Tmapv2.MarkerOptions.ANIMATE_BOUNCE);
             infoWindows[indexPtr].appendTo('body')
 
             let myOffcanvas = document.getElementById( infoWndowId)
@@ -257,8 +256,12 @@
             
             $('#' + infoWndowId).find('#info_btn_roadview').click(function() {
                 window.open("https://map.kakao.com/link/roadview/" + lat + "," + lon);
-            })
+            })  
+            
+
             bsOffcanvas.show();
+
+
             // set draggable false
             map.setOptions({ draggable: false }); 
             
@@ -283,7 +286,7 @@
         let id, name, lat, lon, tel, type, time, locInfo;
 
         "{% for store in store_list %}"
-            console.log("{{store.name}}")
+            // console.log("{{store.name}}")
             name = "{{ store.name }}";
             addr = "{{ store.address }}";
             lat = "{{ store.latitude }}";
