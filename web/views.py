@@ -90,7 +90,12 @@ def mypage():
         if id != "":
             datas = getSql().get_data_from_db("name, main_store, phone, email, pw", "user", f"where id = '{id}'")[0]
             print(datas)
-            return render_template("mypage.html", id=id, name=name)
+            datas['main_store'] = "" if datas['main_store'] == None else datas['main_store']
+            datas['phone'] = "".join( [x for x in datas['phone'][1:]] )
+            datas['phone'] = datas['phone'][:2] + "-" \
+                            + datas['phone'][2]+"***-"+datas['phone'][6]+"***"
+            datas['pw'] = "".join( [ "*" for _ in datas['pw'] ] )
+            return render_template("mypage.html", id=id, name=name, data=datas)
 
         else:
             return render_template("login.html", id=id, name=name)

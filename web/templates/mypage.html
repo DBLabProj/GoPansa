@@ -8,6 +8,72 @@
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
 
+<style>
+.reprofile{
+	width:80px;
+	height: 35px;
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	font-size: 16px;
+	margin: 20px;
+}
+.membership_box{
+	height: 60%;
+	border: 0;
+}
+.small_box_m{
+	padding: 15px 5px;
+}
+.membership_header_box{
+	height: 40px;
+	font-size: 21px;
+}
+.membership_box{
+	padding: 0px;
+	width: 100%;
+}
+.cost{
+	font-size: 20px;
+}
+.membership_contain_box {
+	font-size: 13px;
+	line-height: 40px;
+	padding: 20px 20px;
+	text-align:left;
+}
+.memberships{
+	width: 47%;
+	<!-- //height: 20%; -->
+	border: solid red 1px;
+	display: inline-block;
+	vertical-align: top;
+	padding: 25px 12px;
+	text-align: center;
+	color: black;
+	font-weight: 900;
+	margin: 0px 6px;
+	
+	border-radius: 20px;
+	
+}
+
+.m_standard{
+	background-color: #F2F2F2;
+}
+
+.m_premium{
+	background-color: #F2F2F2;
+	<!-- color: #FFFFFF; -->
+}
+.pay{
+	vertical-align:bottom;
+	border-radius: 10px;
+	width: 100px;
+	height: 40px;
+	font-size: 18px;
+}
+</style>
+
 <body>
     <center>
     <article>
@@ -19,35 +85,62 @@
                     <div class="box_title">프로필</div>
 
                     <div class="box_header">이름</div>
-                    <div class="box_contain">이현무</div>
+                    <div class="box_contain">{{data['name']}}</div>
                     <br>
 
                     <div class="box_header">대표 상호명</div>
-                    <div class="box_contain">맹학교</div>
+					{% if data['main_store'] == "" %}
+					<div class="box_contain">등록된 상호 없음</div>
+					{% else %}
+                    <div class="box_contain">{{data['main_store']}}</div>
+					
+					{% endif %}
                     <br>
 
                     <div class="box_header">전화번호</div>
-                    <div class="box_contain">112</div>
+                    <div class="box_contain">+82 {{data['phone']}}</div>
                     <br>
 
-                    <div class="box_header">이메일</div>
-                    <div class="box_contain">ㅁㄴㅇㄴㅁㅁㄴㅇ</div>
-                    <br>
 
                     <div class="box_header">비밀번호</div>
-                    <div class="box_contain">123******</div>
+                    <div class="box_contain">{{data['pw']}}</div>
+					<br><br><br>
+
+
+					<input type="button" value="수 정" name="reprofile" class="reprofile">
+					
                 </div>
                 
-                <div class="mypage_small_box">
+                <div class="mypage_small_box small_box_m">
                     <div class="box_title">멤버십</div>
-
+<!-- membership_header_box  membership_contain_box -->
                     <div class="membership_box">
-                        <div class="membership_header_box">
-                            asd
+                        <div class="memberships m_standard">
+                            <div class="membership_header_box">STANDARD</div>
+							<div class="membership_contain_box">
+								<ul>
+									<li class="cost">월 20,000 원</li>
+									<li>무제한 고기 등급 측정</li>
+									<li>지도에 업체 위치 표시</li>
+								</ul>
+								
+							</div>
+							<input type="button" class="pay" value="결 제">
                         </div>
 
-                        <div class="membership_contain_box">
-                            asd
+                        <div class="memberships m_premium">
+                            <div class="membership_header_box"
+							style="font-weight:900;font-size:24px;color:#FE2E2E;">PREMIUM</div>
+							<div class="membership_contain_box">
+								<ul>
+								<li class="cost">월 25,000 원</li>
+								<li>무제한 고기 등급 측정</li>
+								<li>측정정보 라벨 생성 및 출력</li>
+								<li>지도에 업체 위치 표시</li>
+								</ul>
+								
+							</div>
+							<input type="button" class="pay" value="결 제">
                         </div>
                     </div>
                 </div>

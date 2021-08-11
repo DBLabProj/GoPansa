@@ -65,16 +65,17 @@ class Sql:
             return True
     
 
+    # 수정 -------------------------------------------- 
     # 회원가입하는 함수
     # input: id, password, name, phone_number, email
     # output: 1(완료), 2(ID 중복), 3(PW규칙위반), 4(SQL모듈에러)
     def register(self, id, pw, name, phone=None, email=None):
         if len(pw) < 6:
             return 3 #PW 규칙위반
-        sql = "INSERT INTO user VALUES(%s, %s, %s, %s, %s, %s);";
+        sql = "INSERT INTO user VALUES(%s, %s, %s, %s, %s, %s, %s, %s);";
 
         try:
-            self.__cursor.execute(sql, (id, pw, "dummy", name, phone, email))
+            self.__cursor.execute(sql, (id, pw, "dummy", "N", name, None, phone, email))
             self.__db.commit()
         except pymysql.err.IntegrityError as e:
             print(e)
@@ -84,6 +85,19 @@ class Sql:
             return 4
         
         return 1
+
+    # 수정 -------------------------------------------- 
+    def regi_store(self, name, user_id, latitude, longitude, address=None, tel=None, time=None):
+        sql = "INSERT INTO store VALUES(%s, %s, %s, %s, %s, %s, %s);"
+
+        try:
+            self.__cursor.execute(sql, (name, user_id, latitude, longitude, address, tel, time))
+            self.__db.commit()
+        except pymysql.Error as e:
+            print(e)
+            return 2
+        return 1
+
 
 
     # 로그인 함수
@@ -128,17 +142,6 @@ class Sql:
             return result
 
 
-
-    def regi_store(self, name, user_id, latitude, longitude, address=None, tel=None, time=None):
-        sql = "INSERT INTO store VALUES(%s, %s, %s, %s, %s, %s, %s);"
-
-        try:
-            self.__cursor.execute(sql, (name, user_id, latitude, longitude, address, tel, time))
-            self.__db.commit()
-        except pymysql.Error as e:
-            print(e)
-            return 2
-        return 1
 
 
     def get_store(self):
