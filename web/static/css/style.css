@@ -16,6 +16,7 @@ body{
 }
 article{ /* 내용물 모두 감싸는 상위 박스 */
     width: 60vw;
+    padding-bottom: 200px;
 }
 
 /* 헤더 시작 */
