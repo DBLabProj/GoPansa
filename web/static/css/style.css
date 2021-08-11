@@ -328,7 +328,8 @@ header{     /* 제일 윗 부분 */
 }
 .zone .upload_text > img{
     height: 100px;
-    margin-top: 30px;
+    width: auto;
+    margin: 30px auto 0;
 }
 .zone .upload_text p{
     margin-top: 20px;
