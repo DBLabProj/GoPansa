@@ -19,23 +19,30 @@
                     <div class="box_title">프로필</div>
 
                     <div class="box_header">이름</div>
-                    <div class="box_contain">이현무</div>
+                    <div class="box_contain">{{data['name']}}</div>
                     <br>
 
                     <div class="box_header">대표 상호명</div>
-                    <div class="box_contain">맹학교</div>
+					{% if data['main_store'] == "" %}
+					<div class="box_contain">등록된 상호 없음</div>
+					{% else %}
+                    <div class="box_contain">{{data['main_store']}}</div>
+					
+					{% endif %}
                     <br>
 
                     <div class="box_header">전화번호</div>
-                    <div class="box_contain">112</div>
+                    <div class="box_contain">+82 {{data['phone']}}</div>
                     <br>
 
-                    <div class="box_header">이메일</div>
-                    <div class="box_contain">ㅁㄴㅇㄴㅁㅁㄴㅇ</div>
-                    <br>
 
                     <div class="box_header">비밀번호</div>
-                    <div class="box_contain">123******</div>
+                    <div class="box_contain">{{data['pw']}}</div>
+					<br><br><br>
+
+
+					<input type="button" value="수정" name="reprofile" class="reprofile">
+					
                 </div>
                 
                 <div class="mypage_small_box">
@@ -43,11 +50,11 @@
 
                     <div class="membership_box">
                         <div class="membership_header_box">
-                            asd
+                            STANDARD
                         </div>
 
                         <div class="membership_contain_box">
-                            asd
+                            PREMIUM
                         </div>
                     </div>
                 </div>
