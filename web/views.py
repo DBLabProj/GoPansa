@@ -4,7 +4,7 @@
 # Last Modified from Ji-yong 2021.06.11
 
 from flask import Flask, request, render_template, jsonify, Blueprint, redirect, url_for, session, current_app
-import os
+import os, json
 
 import logging
 from .db.control_sql import Sql
@@ -87,6 +87,16 @@ def join():
         pass
     
     return render_template("index.html")
+
+@views.route("/findStore", methods=["POST"])
+def findStore():
+    store = request.form['store']
+    
+    sql = getSql()
+    store_list = sql.getStoreList(store)
+    
+    return jsonify(result = store_list)
+
 
 @views.route("/regist", methods=["GET"])
 def regist():
