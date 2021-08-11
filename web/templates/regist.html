@@ -81,6 +81,8 @@
 						<input class="input100" type="text" name="store" id="store_input"
 						placeholder="상호명" onkeyup="find_store();">
 						<span class="focus-input100"></span>
+						<input id="store_select" type="text" name="store_select" readonly/>
+						<div id="store_box"></div>
 					</div>
 
 					
@@ -120,27 +122,37 @@
 
 </body>
 <script>
-// 업체명 입력하면 디비에 저장된 업체 정보중 입력된 값과 일치하는 정보 불러와줌
-function find_store(){
-	var store_name = document.getElementById("store_input").value;
-	console.log(store_name);
-	
-	$.ajax({
-		type: "POST", 
-		url:"/findStore",
-		dataType:"JSON", 
-		data:{store: store_name
-		},
-		success : function(data){
+	function getStoreHtml(business_name) {
+        let storeHtml = `<ul class="storeList">
+            <li class="store_title">${business_name}</li>
+        </ul>`
+        $('#store_box').append(storeHtml)
+    }
+
+	// 업체명 입력하면 디비에 저장된 업체 정보중 입력된 값과 일치하는 정보 불러와줌
+	function find_store(){
+		var store_name = document.getElementById("store_input").value;
+		$('#store_box').empty();
 		
-			console.log(data.result);
-		}
-	});
-
-}
-
-
-
+		$.ajax({
+			type: "POST", 
+			url:"/findStore",
+			dataType:"JSON", 
+			data:{store: store_name
+			},
+			success : function(data){
+                for (let i = 0; i < data.result.length; i++) {
+                    let business_name = data.result[i]["business_name"]
+                    getStoreHtml(business_name)
+                }
+				$(".store_title").click(function(){
+					$("#store_select").show();
+					$("#store_select").val($(this).text());
+					$('#store_box').empty();
+				})
+			}
+		});
+	}
 </script>
 
 
