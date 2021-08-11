@@ -28,9 +28,9 @@
 </head>
 
 <body>
+    {% include "menu_template.html" %}
     <center>
     <article>
-        {% include "menu_template.html" %}
 
         <div id="big_contain">
             <!-- 가운데 큰 그림 시작 -->
@@ -111,7 +111,7 @@
                     });
                 </script>
                 <input type="file" id="camera" name="camera" capture="camera" accept="image/*" />
-                <label for="file">Choose a file</label>
+                <label for="file">여기를 눌러 촬영하세요</label>
                 <br/>
                 <img id="pic" style="width:50%;" />
 

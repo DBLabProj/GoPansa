@@ -6,12 +6,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src = "/static/js/index.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <style>
+        article{
+            background: white;
+        }
+    </style>
 </head>
 
 <body>
+    {% include "menu_template.html" %}
     <center>
     <article>
-        {% include "menu_template.html" %}
         <div id="big_contain">
         
             <!-- 가운데 큰 그림 시작 -->
