@@ -25,8 +25,7 @@ def getSql():
 def index():
     if "id" in session:
         id = session["id"]
-        if id:
-            print(f"id:{id}")
+        if id and id != "":
             name = getSql().get_data_from_db("name", "user", f"where id = '{id}'")[0]['name']
             return render_template("index.html", id=id, name=name)
 
@@ -36,7 +35,8 @@ def index():
 def login():
     if request.method == "GET":
         if "id" in session:
-            if session["id"]:
+            id = session["id"]
+            if id and id != "":
                 return redirect('/')
 
         return render_template("login.html", id='', name='')
