@@ -117,7 +117,7 @@ header{     /* 제일 윗 부분 */
     position: relative;
     width: 100%;
     height: 350px;
-    background: var(--main-theme-color);
+    background: #1E2024;
 }
 
 #top_article > img{
@@ -211,7 +211,7 @@ header{     /* 제일 윗 부분 */
     height: 50px; 
     width: 150px; 
     left: 0;
-    background-color: rgb(255, 180, 0); 
+    background-color: var(--main-theme-color); 
     -webkit-transition: .5s; 
     transition: .4s; 
     border-radius: 20px; 
@@ -234,7 +234,7 @@ header{     /* 제일 윗 부분 */
 }
 .contain_box .numbering{
     display: inline-block;
-    background: rgb(255, 180, 0);
+    background: var(--main-theme-color);
     width: 30px;
     height: 30px;
     margin-top: 50px;
@@ -260,7 +260,7 @@ header{     /* 제일 윗 부분 */
     font-size: 20px;
 }
 .contain_box span{
-    color: orange;
+    color: var(--main-theme-color);
 }
 .contain_box img{
     display: block;
@@ -368,7 +368,7 @@ header{     /* 제일 윗 부분 */
 .zone .in {
     color:white;
     border-color:white;
-    background: radial-gradient(ellipse at center,rgb(255, 180, 0) 0,rgb(255, 180, 0) 100%);
+    background: radial-gradient(ellipse at center,var(--main-theme-color) 0,var(--main-theme-color) 100%);
 }
 .zone .in i {          
     color:#fff;
@@ -384,7 +384,7 @@ header{     /* 제일 윗 부분 */
     border:5px dashed gray;
 }
 .zone.hover i {          
-    color:rgb(255, 180, 0);
+    color:var(--main-theme-color);
 }
 .zone.hover label {
     background: #fff;
