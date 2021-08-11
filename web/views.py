@@ -96,7 +96,7 @@ def mypage():
             
             if len( datas['phone'] ) == 8:
                 datas['phone'] = "".join( [x for x in datas['phone'][1:]] )
-                datas['phone'] = datas['phone'][:2] + "-" \
+                datas['phone'] = '+82' + datas['phone'][:2] + "-" \
                                 + datas['phone'][2]+"***-"+datas['phone'][6]+"***"
             elif len( datas['phone'] ) == 0:
                 datas['phone'] = "등록된 휴대폰이 없습니다."
