@@ -25,12 +25,6 @@
             });
         });
     </script>
-    <style>
-        *{
-            transition: all 1000ms;
-            -webkit-transition: all 1000ms;
-        }
-    </style>
 </head>
 
 <body>
@@ -60,7 +54,7 @@
                 <span class='onoff-switch'></span>               
             </label>
             
-            <div class="contain_box">
+            <div id='gallery_box' class="contain_box">
                 <div class="zone">
                     <div id="dropZ">
                         <div class="selectFile">       
@@ -80,20 +74,56 @@
                 <div class="classify_btn" style='display: none'>측정</div>
             </div>
             
-            <div class="contain_box">
-                <div>
+            <div id='camera_box' class="contain_box" style='display: none'>
+                <!-- <div>
                     카메라 화면
                 </div>
                 <button id="shot">촬영</button>
-                <img id="cam">
+                <img id="cam"> -->
+                <script>
+                    $(function(){
+                        $('#camera').change(function(e){
+                            $('#pic').attr('src', URL.createObjectURL(e.target.files[0]));
+                            $(".classify_btn").show();
+                
+                            $('.classify_btn').click(function(){
+                                var formData = new FormData();
+                                formData.append("file", e.target.files[0]);
+
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/uploadIMG',
+                                    processData: false,
+                                    contentType: false,
+                                    xhrFields: {
+                                        withCredentials: true
+                                    },
+                                    data: formData,
+                                    success: function (data) {
+                                        alert(data.result);
+                                    },
+                                    error: function (error) {
+                                        console.error(error);
+                                    }
+                                });
+                            });
+                        });
+                    });
+                </script>
+                <input type="file" id="camera" name="camera" capture="camera" accept="image/*" />
+                <label for="file">Choose a file</label>
+                <br/>
+                <img id="pic" style="width:50%;" />
+
+                <div class="classify_btn" style='display: none'>측정</div>
             </div>
 
         </div>
 
         <script>
             $(document).on("click", "#btn", function(){
-                $("#beef_box").toggle("slow");
-                $("#pork_box").toggle("slow");
+                $("#gallery_box").toggle("slow");
+                $("#camera_box").toggle("slow");
             })
         </script>
         

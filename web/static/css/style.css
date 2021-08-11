@@ -460,6 +460,26 @@ header{     /* 제일 윗 부분 */
     background: var(--main-theme-color);
     color: white;
 }
+#camera{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+#camera + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+#camera:focus + label,
+#camera + label:hover {
+    background-color: red;
+}
 /* 등급 측정 페이지 끝 */
 
 
@@ -529,263 +549,74 @@ header{     /* 제일 윗 부분 */
 }
 
 
-
-
-
-/* loogin popup start */
-body{
-    height: 100vh;
-    text-align: center;
-}
-    /*Trigger Button*/
-.login-trigger {
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(to bottom right, #B05574, #F87E7B);
-    padding: 15px 30px;
-    border-radius: 30px;
-    position: relative; 
-    top: 50%;
-}
-
-/*Modal*/
-h4 {
-    font-weight: bold;
-    color: #fff;
-}
-.close {
-    color: #fff;
-    transform: scale(1.2)
-}
-.modal-content {
-    font-weight: bold;
-    background: linear-gradient(to bottom right,#F87E7B,#B05574);
-}
-.form-control {
-    margin: 1em 0;
-}
-.form-control:hover, .form-control:focus {
-    box-shadow: none;  
-    border-color: #fff;
-}
-.username, .password {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    border-bottom: 2px solid #eee;
-    padding-left: 0;
-    font-weight: normal;
-    background: transparent;  
-}
-.form-control::-webkit-input-placeholder {
-    color: #eee;  
-}
-.form-control:focus::-webkit-input-placeholder {
-    font-weight: bold;
-    color: #fff;
-}
-.login {
-    padding: 6px 20px;
-    border-radius: 20px;
-    background: none;
-    border: 2px solid #FAB87F;
-    color: #FAB87F;
-    font-weight: bold;
-    transition: all .5s;
-    margin-top: 1em;
-}
-.login:hover {
-    background: #FAB87F;
-    color: #fff;
-}
-/* login popup end */
-
-
-
-
-
-
-
-
-
-
-
-
-
-#login_contain{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient( to right top, #3d87c2, #33ff33 );
-}
-#login_box{
-    position: absolute;
-    width: 25%;
-    height: 55%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: -1px 1px 100px -50px black, 1px -1px 100px -50px black;
-}
-#login_top{
-    position: relative;
-    width: 100%;
-    height: 12%;
-    background: #1e232e;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-#login_bottom{
-    width: 100%;
-    height: 88%;
-    background: #ededed;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
-#login_form{
-    position: relative;
-    height: 85%;
-    padding: 12% 1% 5% 1%;
-}
-.login_input_box{
-    width: 75%;
-    height: 15%;
-    margin-bottom: 3%;
-    background: #f0f0f0;
-    border: 1px solid #c7c7c7;
-    border-radius: 20px;
-}
-.login_input_box input{
-    width: 90%;
-    height: 100%;
-    border: none;
-    background: none;
-}
-.login_input_box input[type=password]{
-    font-family: arial;
-}
-.login_input_box input:focus{
-    outline: none;
-}
-.login_input_box input::placeholder{
-    color: #b4b2b2;
-    letter-spacing: 2px;
-    font-weight: bold;
-}
-
-#login_form #save_id{
-    float: left;
-    margin-top: 10px;
-    margin-left: 13%;
-}
-#login_form #save_id span{
-    margin-left: 10px;
-    color: #1e232e;
-    font-size: 14px;
-}
-#login_form #save_id #save_id_chk{
-    display: none;
-    height: 16px;
-}
-#login_form #save_id #save_id_chk + label{
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-    cursor: pointer;
-    outline: 1px solid #c7c7c7;
-}
-
-#login_form #save_id #save_id_chk:checked + label:after{
-    content: '\2714';
-    font-size: 14px;
-}
-
-
-#login_btn{
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    left: 50%;
-    bottom: 5%;
-    transform: translateX(-50%);
-    border-radius: 40px;
-    background: linear-gradient( to right top, #3d87c2, #33ff33 );
-    text-align: center;
-    font-weight: bold;
-    cursor: pointer;
-    color: #f0f0f0;
-    line-height: 80px;
-}
-
-/* 로그인 창 맨 아래 회원가입 아이디찾기 비밀번호찾기 */
-#login_bottom > div:nth-child(2){
-    width: 100%;
-    height: 100%;
-}
-#login_bottom > div:nth-child(2) div{
-    display: inline-block;
-    margin: 15px 15px;
-    font-weight: 900;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-
-
-/* 로그인페이지 전용 */
-/* 로고 시작 */
-#login_box #logo_box{/* 내일 logo 감싸는 박스 */
-    position: absolute;
-    display: inline-block;
-    max-height: 50px;
-    cursor: pointer;
-
-    left: 50%;
-    transform: translateX(-50%);
-}
-#login_box #logo_box img{
-    float: left;
-    height: 40px;
-    margin-top: 7px;
-    margin-right: 5px;
-}
-#login_box #logo_box #logo_txt{
-    position: relative;
-    display: inline-block;
-    height: 30px;
-    margin-top: 12px;
-    
-    color: #f6f5f5;
-}
-#login_box #logo_box #logo_txt_left{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    
-    font-size: 26px;
-    font-weight: bold;
-}
-#login_box #logo_box #logo_txt_right{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-
-    text-align: left;
-    font-size: 12px;
-    font-weight: normal;
-    letter-spacing: 0px;
-    line-height: 12px;
-}
-/* 로고 끝 */
-/* 로그인페이지 전용 */
-
-
-
 .back_line{
     box-shadow: inset 0 -21px 0 #276EBC;
 }
+
+
+
+/* 마이페이지 시작 */
+.mypage_big_box{
+    position: relative;
+    width: 100%;
+    height: 700px;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+.mypage_small_box{
+    position: relative;
+    display: inline-block;
+    width: 47%;
+    height: 95%;
+    margin: 15px;
+    vertical-align: top;
+    padding: 15px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+.box_title{
+    text-align: left;
+    font-size: 36px;
+    font-weight: 900;
+    padding: 20px 10px 30px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ccc;
+}
+.box_header{
+    display: inline-block;
+    width: 140px;
+    height: 30px;
+    line-height: 30px;
+    margin: 20px 15px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.box_contain{
+    display: inline-block;
+    height: 30px;
+    margin: 20px 15px;
+    vertical-align: top;
+    line-height: 30px; 
+    font-weight: bold;
+    color: gray;
+}
+.membership_box{
+    position: relative;
+    width: 95%;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+.membership_header_box{
+    height: 100px;
+    border-bottom: 1px solid #ccc;
+}
+.membership_contain_box{
+    height: 200px;
+    padding: 50px 10px;
+}
+/* 마이페이지 끝 */
+
 
 
 footer{

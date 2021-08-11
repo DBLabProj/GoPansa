@@ -18,9 +18,11 @@ log.setLevel(logging.ERROR)
 def get_id_name():
     id, name = '', ''
     
+    print(f'session:{session}')
+
     if "id" in session:
         id = session["id"]
-        if id and id != "":
+        if id is not None and id != "":
             name = getSql().get_data_from_db("name", "user", f"where id = '{id}'")[0]['name']
 
         else:
@@ -58,8 +60,7 @@ def login():
         result = sql.login( id, pw)
         
         if result == 1:
-            if "id" in session:
-                session["id"] = id
+            session["id"] = id
                 
             return redirect("/")
 
@@ -79,6 +80,20 @@ def logout():
     session["id"] = None
     
     return redirect("/")
+
+
+@views.route("/mypage", methods=["GET", "POST"])
+def mypage():
+    if request.method == "GET":
+        id, name = get_id_name()
+
+        if id != "":
+            datas = getSql().get_data_from_db("name, main_store, phone, email, pw", "user", f"where id = '{id}'")[0]
+            print(datas)
+            return render_template("mypage.html", id=id, name=name)
+
+        else:
+            return render_template("login.html", id=id, name=name)
 
 
 @views.route("/findStore", methods=["POST"])
