@@ -189,7 +189,7 @@ margin: 0 auto;
 }
 
 .wrap-login100 {
-  width: 500px;
+  width: 320px;
   background: transparent;
   border-radius: 0px;
 }
@@ -481,6 +481,8 @@ margin: 0 auto;
 }
 #store_select{
   width: 100%;
+  height: 50px;
+
   height: 40px;
   border-radius: 31px;
 
@@ -488,17 +490,6 @@ margin: 0 auto;
   font-weight: bold;
   color: gray;
   display: none;
-}
-#store_address{
-  width: 100%;
-  height: 40px;
-  border-radius: 31px;
-
-  text-align: center;
-  font-size:12px;
-  font-weight: bold;
-  color: gray;
-  display: block;
 }
 .store_title{
   margin: 5px auto;

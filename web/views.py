@@ -84,17 +84,16 @@ def logout():
 @views.route("/findStore", methods=["POST"])
 def findStore():
     store = request.form['store']
-    store_list = []
-    if len(store) > 2:
-        sql = getSql()
-        store_list = sql.getStoreList(store)
+    
+    sql = getSql()
+    store_list = sql.getStoreList(store)
     
     return jsonify(result = store_list)
 
 @views.route("/getStoreData", methods=["POST"])
 def getStoreData():
     store_id = request.form['id']
-
+    #print("store_id>",store_id)
     addr = getSql().getStoreAddr(store_id)
     return  jsonify(result = addr)
 
@@ -237,6 +236,7 @@ def upload_img():
                 2: "2"
             }
         }
+        print(f'filepath:{filepath}')
         model = AIModel()
         output, index = model.cow(filepath)
         result_grade = grade["cow"][index]

@@ -85,10 +85,9 @@
 					
 					<div class="wrap-input100 validate-input m-b-16">
 						<input class="input100" type="text" name="store" id="store_input"
-						placeholder="상호명">
+						placeholder="상호명" onkeyup="find_store();">
 						<span class="focus-input100"></span>
-						<input id="store_select" type="text" name="store_select" readonly style="display:none"/>
-						<input id="store_address" type="text" name="store_address" readonly style="display:none"/>
+						<input id="store_select" type="text" name="store_select" readonly/>
 						<div id="store_box"></div>
 					</div>
 
@@ -129,23 +128,6 @@
 
 </body>
 <script>
-    var itcdelay = (function () { 
-        // Function
-        var itcTimer = 0;
-        return function (callback, ms) {
-            clearTimeout(itcTimer);
-            itcTimer = setTimeout(callback, ms);
-        };
-    })();
-
-    $(document).ready(function () {
-		$('#store_input').keyup(function () {
-			itcdelay(function () {
-				find_store();
-			}, 200);
-		});
-	});
-
 	function getData(store_id){
 		$.ajax({
 			type: "POST", 
@@ -154,8 +136,9 @@
 			data:{id: store_id
 			},
 			success : function(data){
-				var address = data.result.address;
-				$("#store_address").val(address);
+                //
+				console.log("get data success");
+				console.log(data.result);
 			}
 		});
 	}
@@ -186,11 +169,10 @@
                 }
 				$(".store_title").click(function(){
 					$("#store_select").show();
-					$("#store_address").show();
-					var id_ = $(this).attr("id");
-					var address = getData(id_);
 					$("#store_select").val($(this).text());
 					$('#store_box').empty();
+					var id_ = $(this).attr("id");
+					//getData(id_);
 				})
 			}
 		});
