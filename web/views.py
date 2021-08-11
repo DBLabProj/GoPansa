@@ -63,7 +63,6 @@ def join():
     b_type = request.form["kinds"]
     b_name = request.form["store"]
     
-    print("type:", b_type)
     sql = getSql()
                 
     if sql.is_id_exist(id):
