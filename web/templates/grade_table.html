@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src = "/static/js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+
+<body>
+    <!--Trigger-->
+    <a class="login-trigger" href="#" data-target="#login" data-toggle="modal">Login</a>
+
+    <div id="login" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        
+        <div class="modal-content">
+        <div class="modal-body">
+            <button data-dismiss="modal" class="close">&times;</button>
+            <h4>Login</h4>
+            <form>
+            <input type="text" name="username" class="username form-control" placeholder="Username"/>
+            <input type="password" name="password" class="password form-control" placeholder="password"/>
+            <input class="btn login" type="submit" value="Login" />
+            </form>
+        </div>
+        </div>
+    </div>  
+    </div>
+
+
+    <center>
+    <article>
+
+        <!-- 헤더 시작 -->
+        <header>
+            <div id="small_header">
+                <!-- <div id="logo_box" onclick="location.href='/'">
+                    <img id='logo_img' src='/static/img/top_bottom/최종logo.png'>
+                    <div id='logo_txt'>
+                        <span id='logo_txt_left'>내일</span>
+                        <span id='logo_txt_right'>Cyber Agis<br>Training Platform</span>
+                    </div>
+                    
+                </div> -->
+
+                <div id='account_box'>
+                    <div class="login_item" onclick="location.href='/로그인.html'" style='color: #53575e'>
+                        로그인
+                    </div>
+                    
+                    <div class="login_item" onclick="location.href='/'" style='color: #5f81bf'>
+                        회원가입
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- 헤더 끝 -->
+        
+
+        <div id="big_contain">
+        
+            <!-- 가운데 큰 그림 시작 -->
+            <div id="main_big_img_wrapper">
+                <div>
+                    <p>대충 고기 등급을 확인 하세요 ~~</p>
+                    <p>이런 말</p>
+
+                    <div id='search_wrapper'>
+                        <input type='text' id='search' placeholder="라벨 코드를 입력해 주세요">
+                        <img src='/static/img/메인화면/search.png'>
+                        <img src='/static/img/메인화면/camera.png'>
+
+                        <span>확인 가능한 고기 종류 : 소고기, 돼지고기</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 가운데 큰 그림 끝 -->
+            
+        </div>
+        
+   
+        <!-- <footer>
+            <div class='footer_tab_box'>
+                <div class='footer_tab'>ⓒ 내일 Coporation</div>
+                <div class='footer_tab'>도움말</div>
+                <div class='footer_tab'>이용약관</div>
+                <div class='footer_tab'>개인정보 처리방침</div>
+            </div>
+        </footer> -->
+   </article>
+   </center>
+</body>
+</html>

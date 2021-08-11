@@ -140,13 +140,13 @@ def map():
     store = sql.get_store()
     return render_template("map.html", store_list=store)
     
-@views.route("/grade", methods=["GET"])
-def grade():
+@views.route("/grade_table", methods=["GET"])
+def grade_table():
     if "id" not in session:
         # session["id"] = get_job_id()
         pass
     
-    return render_template("grade.html")
+    return render_template("grade_table.html")
 
 @views.route("/check_grade", methods=["GET", "POST"])
 def check_grade():
