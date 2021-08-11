@@ -108,27 +108,21 @@ def regist():
         b_name = request.form["store"]
         
         sql = getSql()
+        result = sql.register(id, pw, username, phone)
                     
-        if sql.is_id_exist(id):
-            print("이미 사용중인 아이디입니다.")
-            return  render_template("regist.html")
+        if result == 2:
+            return "<script>alert('이미 사용중인 아이디입니다.');</script>"+render_template("regist.html", id='')
         
         if pw != pwc:
-            print("비밀번호를 다시 확인해주세요.")
-            return  render_template("regist.html")
+            return "<script>alert('비밀번호를 다시 확인해주세요.');</script>"+render_template("regist.html", id='')
         
-        if not sql.register(id, pw, username, phone ):
-            print("이미 사용중인 아이디입니다.")
-            return  render_template("regist.html")
+        if result == 3:
+            return "<script>alert('비밀번호를 6자 이상 설정해주세요.');</script>"+render_template("regist.html", id='')
         
-        # success
-        if not sql.register(id, pw, username, phone, email=None):
-            print("서비스 상태가 좋지 못합니다.\n다시 시도해주세요.")
-            return  render_template("regist.html")
+        if result == 4:
+            return "<script>alert('서비스 상태가 좋지 못합니다.다시 시도해주세요.');</script>"+render_template("regist.html", id='')
         
-        if "id" not in session:
-            session["id"] = get_job_id()
-            pass
+        session["id"] = id
         return redirect('/')
 
 
