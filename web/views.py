@@ -135,8 +135,10 @@ def map():
     if "id" not in session:
         # session["id"] = get_job_id()
         pass
-    
-    return render_template("map.html")
+
+    sql = Sql('203.252.240.74', 'classify_meat', 'dblab', 'dblab6100')
+    store = sql.get_store()
+    return render_template("map.html", store_list=store)
     
 @views.route("/grade", methods=["GET"])
 def grade():
