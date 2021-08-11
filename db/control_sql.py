@@ -108,6 +108,27 @@ class Sql:
                 return 3 #PW틀림
 
 
+    # DB에서 원하는 데이터를 가져오는 함수
+    # 첫째인자 : 가져올 칼럼
+    # 둘째인자 : 테이블명
+    # 셋째인자 : 뒷부분에 가져올 조건 (where 등)
+    # 반환값 : 해당 조건으로 검색된 데이터
+    def get_data_from_db(self, selection, table, target):
+        with self.__cursor as cursor:
+            result = 0
+
+            sql_qur = f'select {selection} from {table} {target}'
+            
+            cursor.execute(sql_qur)
+            result = cursor.fetchall()
+            
+            if result == ((None,),):
+                result = [["-1"]]
+            
+            return result
+
+
+
     def regi_store(self, name, user_id, latitude, longitude, address=None, tel=None, time=None):
         sql = "INSERT INTO store VALUES(%s, %s, %s, %s, %s, %s, %s);"
 

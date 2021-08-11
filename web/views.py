@@ -7,7 +7,7 @@ from flask import Flask, request, render_template, jsonify, Blueprint, redirect,
 import os, json
 
 import logging
-from .db.control_sql import Sql
+from db.control_sql import Sql
 from raspberry import rasp_control
 
 views = Blueprint("server", __name__)
@@ -22,39 +22,52 @@ def getSql():
 
 @views.route("/", methods=["GET"])
 def index():
-    if "id" not in session:
-        # session["id"] = get_job_id()
-        pass
-    
-    return render_template("index.html")
+    if "id" in session:
+        id = session["id"]
+        if id:
+            print(f"id:{id}")
+            name = getSql().get_data_from_db("name", "user", f"where id = '{id}'")[0]['name']
+            return render_template("index.html", id=id, name=name)
+
+    return render_template("index.html", id='', name='')
 
 @views.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
-        return render_template("login.html")
+        if "id" in session:
+            if session["id"]:
+                return redirect('/')
+
+        return render_template("login.html", id='', name='')
         
     elif request.method == "POST":
         sql = getSql()
-        id = request.form["email"]
-        pw = request.form["pass"]
+        id = request.form["id"]
+        pw = request.form["pw"]
         result = sql.login( id, pw)
         
         if result == 1:
-            if "id" not in session:
-                session["id"] = get_job_id()
-                pass
-            return render_template("index.html")
+            if "id" in session:
+                session["id"] = id
+                
+            return redirect("/")
+
             
         elif result ==2:
-            print("아이디가 존재하지 않습니다.")
-            return render_template("login.html")
+            return "<script>alert('아이디가 존재하지 않습니다.');</script>"+render_template("login.html", id='')
             
         elif result == 3:
-            print("비밀번호가 일치하지 않습니다.")
-            return render_template("login.html")
+            return "<script>alert('비밀번호가 일치하지 않습니다.');</script>"+render_template("login.html", id='')
             
         elif result == 4:
-            print("서비스 상태가 좋지 못합니다.\n다시 시도해주세요.")
+            return "<script>alert('서비스 상태가 좋지 못합니다.\n다시 시도해주세요.');</script>"+render_template("login.html", id='')
+
+
+@views.route("/logout", methods=["GET"])
+def logout():
+    session["id"] = None
+    
+    return redirect("/")
 
 
 @views.route("/findStore", methods=["POST"])

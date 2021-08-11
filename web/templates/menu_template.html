@@ -1,5 +1,11 @@
 <!-- 헤더 시작 -->
 <header>
+    <script>
+        var user_id = "{{id}}";
+        var user_name = "{{name}}";
+        console.log("user_id="+user_id, user_id=="");
+    </script>
+
     <div id="small_header">
         <div id="logo_box" onclick="location.href='/'">
             <img id='logo_img' src='/static/img/메인화면/logo.png'>
@@ -14,13 +20,15 @@
             <div class="tab_item" onclick="location.href='/grade_table'">
                 육질등급표
             </div>
-            
+            {% if id is not none and id != "" %}
             <div class="tab_item need_login" onclick="location.href='/check_grade'">
                 육질측정
             </div>
+            {% endif %}
         </div>
 
         <div id='account_box'>
+            {% if id == "" %}
             <div class="login_item need_logout" onclick="location.href='/login'">
                 로그인
             </div>
@@ -28,10 +36,16 @@
             <div class="login_item need_logout" onclick="location.href='/regist'">
                 회원가입
             </div>
+
+            {% else %}
+            <div class="login_item need_login" onclick="location.href='/mypage'">
+                마이페이지
+            </div>
             
-            <div class="login_item need_login" onclick="location.href='/'">
+            <div class="login_item need_login" onclick="location.href='/logout'">
                 로그아웃
             </div>
+            {% endif %}
         </div>
     </div>
 </header>

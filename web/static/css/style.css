@@ -10,6 +10,9 @@
     /* transition: all 1000ms;
     -webkit-transition: all 1000ms; */
 }
+:root {
+    --main-theme-color: #FF4C29;
+}
 
 body{
     overflow-x: hidden;
@@ -92,7 +95,7 @@ header{     /* 제일 윗 부분 */
 }
 
 .login_item:hover{ 
-    color: rgb(255, 180, 0);
+    color: var(--main-theme-color);
     font-weight: 600;
 }
 /* 탭들 오른쪽 로그인 회원가입 등 끝 */
@@ -110,7 +113,7 @@ header{     /* 제일 윗 부분 */
     position: relative;
     width: 100%;
     height: 350px;
-    background: rgb(255, 180, 0);
+    background: var(--main-theme-color);
 }
 
 #top_article > img{
@@ -145,7 +148,7 @@ header{     /* 제일 윗 부분 */
     margin: auto;
     width: 50%;
     height: fit-content;
-    border: 2px solid rgb(255, 180, 0);
+    border: 2px solid var(--main-theme-color);
     border-radius: 25px;
     text-align:center;
     z-index: 20;
@@ -158,7 +161,7 @@ header{     /* 제일 윗 부분 */
     height: 100%;
 }
 .zone .btnCompression .active{
-    background: rgb(255, 180, 0);
+    background: var(--main-theme-color);
     color:white;
 }
 .zone i{
@@ -201,7 +204,7 @@ header{     /* 제일 윗 부분 */
     padding: 0;
     top: 50%;
     transform: translateY(-50%);
-    background: rgb(255, 180, 0);
+    background: var(--main-theme-color);
     color: white;
     border-radius: 10px;
     line-height: 40px;
@@ -225,7 +228,7 @@ header{     /* 제일 윗 부분 */
 }
 .zone .in label {
     background: #fff;
-    color: rgb(255, 180, 0);
+    color: var(--main-theme-color);
 }
 .zone.hover {
     color:gray;
@@ -238,7 +241,7 @@ header{     /* 제일 윗 부분 */
 }
 .zone.hover label {
     background: #fff;
-    color:rgb(255, 180, 0);
+    color:var(--main-theme-color);
 }
 .zone.fade {
     transition: all 0.3s ease-out;
@@ -251,13 +254,13 @@ header{     /* 제일 윗 부분 */
     margin: 30px auto;
     padding: 15px;
     
-    border: 2px solid rgb(255, 180, 0);
+    border: 2px solid var(--main-theme-color);
 
     border-radius: 20px;
     background: white;
     font-size: 12px;
     font-weight: bold;
-    color: rgb(255, 180, 0);
+    color: var(--main-theme-color);
 
     box-shadow: 3px 3px #a8a8a8;
 }
@@ -294,7 +297,7 @@ header{     /* 제일 윗 부분 */
 .classify_btn{
     width: 100px;
     height: 100px;
-    border: 5px solid rgba(255, 180, 0);
+    border: 5px solid var(--main-theme-color);
     border-radius: 50px;
     line-height: 90px;
     font-size: 20pt;
@@ -303,7 +306,7 @@ header{     /* 제일 윗 부분 */
     cursor: pointer;
 }
 .classify_btn:hover{
-    background: rgb(255, 180, 0);
+    background: var(--main-theme-color);
     color: white;
 }
 /* 등급 측정 페이지 끝 */
