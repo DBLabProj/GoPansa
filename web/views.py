@@ -91,7 +91,7 @@ def regist():
             print("비밀번호를 다시 확인해주세요.")
             return  render_template("regist.html")
         
-        if not sql.register(id, pw, name, phone ):
+        if not sql.register(id, pw, username, phone ):
             print("이미 사용중인 아이디입니다.")
             return  render_template("regist.html")
         
