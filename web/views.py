@@ -15,6 +15,20 @@ views = Blueprint("server", __name__)
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
+def get_id_name():
+    id, name = '', ''
+    
+    if "id" in session:
+        id = session["id"]
+        if id and id != "":
+            name = getSql().get_data_from_db("name", "user", f"where id = '{id}'")[0]['name']
+
+        else:
+            id = ''
+
+    return id, name
+
+
 def getSql():
     return Sql( "203.252.240.74", 
                 "classify_meat", 
@@ -23,13 +37,9 @@ def getSql():
 
 @views.route("/", methods=["GET"])
 def index():
-    if "id" in session:
-        id = session["id"]
-        if id and id != "":
-            name = getSql().get_data_from_db("name", "user", f"where id = '{id}'")[0]['name']
-            return render_template("index.html", id=id, name=name)
+    id, name = get_id_name()
 
-    return render_template("index.html", id='', name='')
+    return render_template("index.html", id=id, name=name)
 
 @views.route("/login", methods=["GET", "POST"])
 def login():
@@ -84,7 +94,9 @@ def findStore():
 @views.route("/regist", methods=["GET", "POST"])
 def regist():
     if request.method == "GET":
-        return render_template("regist.html")
+        id, name = get_id_name()
+            
+        return render_template("regist.html", id=id, name=name)
     
     elif request.method == "POST":
         id = request.form["ID"]
@@ -150,35 +162,29 @@ def check_label():
     
 @views.route("/map", methods=["GET"])
 def map():
-    if "id" not in session:
-        # session["id"] = get_job_id()
-        pass
+    id, name = get_id_name()
 
     sql = Sql('203.252.240.74', 'classify_meat', 'dblab', 'dblab6100')
     store = sql.get_store()
-    return render_template("map.html", store_list=store)
+    return render_template("map.html", store_list=store, id=id, name=name)
     
 @views.route("/grade_table", methods=["GET"])
 def grade_table():
-    if "id" not in session:
-        # session["id"] = get_job_id()
-        pass
+    id, name = get_id_name()
     
-    return render_template("grade_table.html")
+    return render_template("grade_table.html", id=id, name=name)
 
 @views.route("/check_grade", methods=["GET", "POST"])
 def check_grade():
     if request.method == "GET":
-        if "id" not in session:
-            # session["id"] = get_job_id()
-            pass
+        id, name = get_id_name()
+        
+        return render_template("check_grade.html", id=id, name=name)
 
     elif request.method == "POST":
         rasp_control.shot_cam()
         rasp_control.get_img()
         return jsonify(data="success")
-        
-    return render_template("check_grade.html")
 
 @views.route("/uploadIMG", methods=["POST"])
 def upload_img():
