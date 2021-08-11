@@ -128,9 +128,24 @@
 
 </body>
 <script>
-	function getStoreHtml(business_name) {
+	function getData(store_id){
+		$.ajax({
+			type: "POST", 
+			url:"/getStoreData",
+			dataType:"JSON", 
+			data:{id: store_id
+			},
+			success : function(data){
+                //
+				console.log("get data success");
+				console.log(data.result);
+			}
+		});
+	}
+	
+	function getStoreHtml(cb_number, business_name) {
         let storeHtml = `<ul class="storeList">
-            <li class="store_title">${business_name}</li>
+            <li class="store_title" id='${cb_number}' onclick="getData(${cb_number})">${business_name}</li>
         </ul>`
         $('#store_box').append(storeHtml)
     }
@@ -149,16 +164,21 @@
 			success : function(data){
                 for (let i = 0; i < data.result.length; i++) {
                     let business_name = data.result[i]["business_name"]
-                    getStoreHtml(business_name)
+					let cb_number = data.result[i]["cb_number"]
+                    getStoreHtml(cb_number, business_name)
                 }
 				$(".store_title").click(function(){
 					$("#store_select").show();
 					$("#store_select").val($(this).text());
 					$('#store_box').empty();
+					var id_ = $(this).attr("id");
+					//getData(id_);
 				})
 			}
 		});
 	}
+	
+	
 </script>
 
 

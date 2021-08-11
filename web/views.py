@@ -90,6 +90,12 @@ def findStore():
     
     return jsonify(result = store_list)
 
+@views.route("/getStoreData", methods=["POST"])
+def getStoreData():
+    store_id = request.form['id']
+    #print("store_id>",store_id)
+    addr = getSql().getStoreAddr(store_id)
+    return  jsonify(result = addr)
 
 @views.route("/regist", methods=["GET", "POST"])
 def regist():

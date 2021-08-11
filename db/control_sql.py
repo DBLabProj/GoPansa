@@ -175,6 +175,21 @@ class Sql:
         return storeList
             
         
+    def getStoreAddr(self, store_id):
+        sql = "\
+            SELECT address \
+            FROM restaurant \
+            WHERE cb_number ="+store_id+";\
+            "
+        try:
+            self.__cursor.execute(sql)
+            store_addr = self.__cursor.fetchone()
+            print(store_addr)
+        except pymysql.Error as e:
+            print(e)
+            return "현재 서비스에 장애가 발생하였습니다."
+            
+        return store_addr
 
 
 
