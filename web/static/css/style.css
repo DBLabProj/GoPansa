@@ -127,16 +127,18 @@ header{     /* 제일 윗 부분 */
     color: white;
     text-align: left;
 }
+
+
+/* 등급 측정 페이지 시작 */
 #check_grade{
-    width: 160px;
-    height: 35px;
+    width: 180px;
+    height: 40px;
     border: solid 1px white;
     background: none;
+    font-size: 18px;
     color: white;
     cursor: pointer;
 }
-
-
 
 .zone {
     position: relative;
@@ -304,16 +306,12 @@ header{     /* 제일 윗 부분 */
     background: rgb(255, 180, 0);
     color: white;
 }
+/* 등급 측정 페이지 끝 */
 
 
 #search_box{ 
     position: relative;
     height: 150px;
-
-    /* background-image: url('/static/img/메인화면/메인페이지 배경.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center 60%; */
 }
 #search_box > div{ /* 메인 큰 이미지 박스 */
     position: absolute;
@@ -324,7 +322,6 @@ header{     /* 제일 윗 부분 */
     margin: 0 auto;
     text-align: left;
     background-color: rgba(0, 0, 0, 0.3);
-    /* filter: brightness(80%); */
 }
 
 
