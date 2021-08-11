@@ -94,14 +94,16 @@ def mypage():
             
             if datas['phone'] == None: datas['phone'] = ""
             
-            if len( datas['phone'] ) == 8:
+            if len( datas['phone'] ) == 11:
                 datas['phone'] = "".join( [x for x in datas['phone'][1:]] )
-                datas['phone'] = '+82' + datas['phone'][:2] + "-" \
+                datas['phone'] = '+82 ' + datas['phone'][:2] + "-" \
                                 + datas['phone'][2]+"***-"+datas['phone'][6]+"***"
+                                
             elif len( datas['phone'] ) == 0:
                 datas['phone'] = "등록된 휴대폰이 없습니다."
             else:
                 datas['phone'] = "존재하지 않는 번호"
+                
             datas['pw'] = "".join( [ "*" for _ in datas['pw'] ] )
             return render_template("mypage.html", id=id, name=name, data=datas)
 
