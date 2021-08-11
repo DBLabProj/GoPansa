@@ -9,6 +9,7 @@ import os, json
 import logging
 from db.control_sql import Sql
 from deeplearning_model.checkGrade import AIModel
+from labeling.control_label import *
 from raspberry import rasp_control
 
 views = Blueprint("server", __name__)
@@ -17,8 +18,6 @@ log.setLevel(logging.ERROR)
 
 def get_id_name():
     id, name = '', ''
-    
-    print(f'session:{session}')
 
     if "id" in session:
         id = session["id"]
@@ -165,7 +164,7 @@ def regist():
 
 @views.route("/check_label", methods=["POST"])
 def check_label():
-    label_code = request.form["tcodext"]
+    label_code = request.form["code"]
     label_img = request.files["img"]
 
     print(f'label_text : {label_code}')
@@ -174,11 +173,23 @@ def check_label():
     is_label_code = label_code == ""
     is_label_img = label_img.filename == ""
 
-
-    if is_label_code:
-        pass
-
-    elif is_label_img:
+    err = False
+    label_length = 12
+    
+    if not is_label_code:
+        if len(label_code) != label_length:
+            err = True
+            print("length err")
+        
+        if not err:
+            pass
+            label_data = getSql().get_labeldata(label_code)
+            
+            print( "label_data",label_data )
+        else:
+            print("올바른 라벨 정보가 아닙니다.")
+        
+    elif not is_label_img:
         pass
 
     else:
@@ -211,10 +222,10 @@ def check_grade():
         
         return render_template("check_grade.html", id=id, name=name)
 
-    elif request.method == "POST":
-        rasp_control.shot_cam()
-        rasp_control.get_img()
-        return jsonify(data="success")
+    # elif request.method == "POST":
+    #     rasp_control.shot_cam()
+    #     rasp_control.get_img()
+    #     return jsonify(data="success")
 
 @views.route("/uploadIMG", methods=["POST"])
 def upload_img():
@@ -270,10 +281,19 @@ def upload_img():
         model = AIModel()
         output, index = model.cow(filepath)
         result_grade = grade["cow"][index]
+
         print(f'result_grade : {result_grade}')
 
         resp = jsonify({'result' : result_grade})
         resp.status_code = 201
+
+        sql = Sql('203.252.240.74', 'classify_meat', 'dblab', 'dblab6100')
+        id, name = get_id_name()
+
+        result = sql.is_user_premium(id)
+        if result is not None and not(result.isdigit()):
+            label_info = sql.get_labeldata()
+            create_label(label_info)
 
         return resp
 

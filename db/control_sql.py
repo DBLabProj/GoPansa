@@ -39,7 +39,7 @@ class Sql:
             return -1
         else:
             result['datetime'] = str(result['datetime'])
-
+        
         return result
     
     
@@ -97,6 +97,80 @@ class Sql:
             print(e)
             return 2
         return 1
+
+    # user의 등급을 바꾸는 함수
+    # input: user_id(아이디), grade(바꿀 등급)
+    # output: 1(정상), 2(SQL에러), 3(grade 형식 오류)
+    def set_user_grade(self, user_id, grade):
+        if grade not in("N", "B", "P"):
+            return 3
+        sql = "UPDATE user SET grade=%s WHERE id=%s"
+        try:
+            self.__cursor.execute(sql, (grade, user_id))
+            self.__db.commit()
+        except pymysql.Error as e:
+            print(e)
+            return 2
+        return 1
+
+    # user의 등급을 받는 함수
+    # input: user_id(아이디)
+    # output: grade(정상), 2(SQL에러), 3(유저 없음)
+    def get_user_grade(self, user_id):
+        sql = "SELECT grade FROM user WHERE id=%s"
+        try:
+            self.__cursor.execute(sql, user_id)
+            result = self.__cursor.fetchone()
+        except pymysql.Error as e:
+            print(e)
+            return 2 #sql에러
+
+        if result is None:
+            return 3 #ID없음
+        
+        return result['grade']
+
+
+    # 해당유저 등급이 None인지 구별하는 함수
+    # input: user_id
+    # output: boolean(정상), 2(SQL에러), 3(ID없음)
+    def is_user_none(self, user_id):
+        grade = self.get_user_grade(user_id)
+
+        if grade == "N":
+            return True
+        elif type(grade) == str:
+            return False
+        else:
+            return grade
+
+
+    # 해당유저 등급이 None인지 구별하는 함수
+    # input: user_id
+    # output: boolean(정상), 2(SQL에러), 3(ID없음)
+    def is_user_basic(self, user_id):
+        grade = self.get_user_grade(user_id)
+
+        if grade == "B":
+            return True
+        elif type(grade) == str:
+            return False
+        else:
+            return grade
+
+
+    # 해당유저 등급이 None인지 구별하는 함수
+    # input: user_id
+    # output: boolean(정상), 2(SQL에러), 3(ID없음)
+    def is_user_premium(self, user_id):
+        grade = self.get_user_grade(user_id)
+
+        if grade == "N":
+            return True
+        elif type(grade) == str:
+            return False
+        else:
+            return grade
 
 
 

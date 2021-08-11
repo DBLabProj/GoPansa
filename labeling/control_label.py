@@ -1,57 +1,25 @@
 import cv2
 import qrcode
 import numpy as np
-import pymysql
 from PIL import ImageFont, ImageDraw, Image
-
-
-# connect to local mysql server
-# input: no
-# output: database
-def connect_db():
-    db = pymysql.connect(
-    user='root', 
-    passwd='3520', 
-    host='127.0.0.1',
-    db='classify_meat', 
-    charset='utf8')
-    
-    return db
-
-# get data that is filtered by id from database
-# input: 'no' in classify_meat record you want to find
-# output: result(dictionary)
-def get_label_data(no):
-    db = connect_db()
-    cursor = db.cursor(pymysql.cursors.DictCursor)
-
-    sql = "\
-    SELECT  c.no, c.datetime, u.name, c.meat_type, c.grade\
-    FROM    user u, classify c\
-    WHERE   no = '" + no + "'"
-
-    cursor.execute(sql)
-
-    result = cursor.fetchone()
-    result['datetime'] = str(result['datetime'])
-
-    return result
+from db.control_sql import Sql
+import os
 
 # create label based on 'no' value
 # input: 'no' values
 # output: label image file
-def create_label(no):
-    classify_info = get_label_data(no)
+def create_label(classify_info):
+    os.mkdir('./labels', exist_ok=True)
     no = classify_info["no"]
     datetime =  classify_info["datetime"]
     name = classify_info["name"]
     meat_type = classify_info["meat_type"]
     grade = classify_info["grade"]
-
-    title_font = ImageFont.truetype("./static/fonts/ONE Mobile Bold.ttf", 18)
+    print(os.getcwd())
+    print(os.listdir(os.getcwd()))
     content_font = ImageFont.truetype("./static/fonts/ONE Mobile Regular.ttf", 12)
     grade_font = ImageFont.truetype("./static/fonts/GmarketSansTTFBold.ttf", 36)
-
+    title_font = ImageFont.truetype("./static/fonts/ONE Mobile Bold.ttf", 18)
     img_width = 220
     img_height = 73
     padding = 5
@@ -94,10 +62,6 @@ def create_label(no):
 
     img = np.array(img)
 
-    cv2.imshow("text", img)
-
-    cv2.waitKey()
-    cv2.destroyAllWindows()
+    cv2.imwrite('./labels/' + no + '.png', img)
 
 
-create_label('210729-B1462')
