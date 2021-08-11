@@ -74,7 +74,7 @@ class Sql:
         sql = "INSERT INTO user VALUES(%s, %s, %s, %s, %s, %s);";
 
         try:
-            self.__cursor.execute(sql, (id, pw, "dummy", name, phone, email))
+            self.__cursor.execute(sql, (id, pw, "dummy", name, phone, "email"))
             self.__db.commit()
         except pymysql.err.IntegrityError as e:
             print(e)
