@@ -6,140 +6,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src = "/static/js/index.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-
-    <style>
-        #grade_table_img_box{
-            height: 200px;
-            background-image: url('/static/img/meat.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center 40%;
-        }
-        #grade_table_img_box div{
-            background-color: rgba(0, 0, 0, 0.3);
-        }
-        #grade_table_img_box p{
-            color: white;
-            font-weight: 900;
-            font-size: 40px;
-            text-align: center;
-            line-height: 200px;
-        }
-
-        .switch-button {
-            position: relative;
-            display: inline-block;
-            width: 300px; 
-            height: 50px;
-            margin-top: 40px;
-            z-index: 9999;
-            cursor: pointer;
-        }
-        .switch-button span{
-            z-index: -999;
-            font-weight: bold;
-            font-size: 24px;
-            color: black;
-            padding: 0 35px;
-            line-height: 50px;
-            
-            user-drag: none;
-            -webkit-user-drag: none;
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
-        
-        .switch-button input { 
-            opacity: 0; 
-            width: 0; 
-            height: 0; 
-        }
-        
-        .non_drag{
-            -ms-user-select: none; 
-            -moz-user-select: -moz-none;
-            -khtml-user-select: none;
-            -webkit-user-select: none;
-            user-select: none;
-            z-index: 2;
-          }
-        .onoff-switch { 
-            position: absolute;
-            cursor: pointer; 
-            top: 0; 
-            left: 0; 
-            right: 0; 
-            bottom: 0; 
-            border-radius: 20px; 
-            /* background-color: white; */
-            box-shadow: inset 1px 1px 1px 1px gray; 
-            -webkit-transition: .4s; 
-            transition: .4s; 
-        } 
-        .onoff-switch:before { 
-            position: absolute; 
-            content: ""; 
-            height: 50px; 
-            width: 150px; 
-            left: 0;
-            background-color: rgb(255, 180, 0); 
-            -webkit-transition: .5s; 
-            transition: .4s; 
-            border-radius: 20px; 
-        } 
-        .switch-button input:checked + .onoff-switch { 
-            /* background-color: white; */
-            box-shadow: inset 1px 1px 1px 1px gray; 
-        } 
-        
-        .switch-button input:checked + .onoff-switch:before { 
-            -webkit-transform: translateX(150px); 
-            -ms-transform: translateX(150px); 
-            transform: translateX(150px); 
-        }
-
-        .contain_box{
-            position: relative;
-            margin-top: 50px;
-            text-align: left;
-        }
-        .contain_box .numbering{
-            display: inline-block;
-            background: rgb(255, 180, 0);
-            width: 30px;
-            height: 30px;
-            margin-top: 50px;
-            margin-right: 10px;
-            border-radius: 15px;
-            line-height: 30px;
-            font-weight: bold;
-            font-size: 22px;
-            color: white;
-            text-align: center;
-        }
-        .contain_box .mini_title{
-            display: inline-block;
-            height: 30px;
-            line-height: 30px;
-            font-size: 26px;
-            font-weight: bold;
-        }
-        .contain_box .contain{
-            margin: 10px 0px 20px 40px;
-            color: #888888;
-            font-weight: bold;
-            font-size: 20px;
-        }
-        .contain_box span{
-            color: orange;
-        }
-        .contain_box img{
-            display: block;
-            width: 100%;
-        }
-    </style>
 </head>
 
 <body>
@@ -149,7 +15,12 @@
         <div id="big_contain">
         
             <!-- 가운데 큰 그림 시작 -->
-            <div id="grade_table_img_box">
+            <div id="grade_table_img_box" style="
+                background-image: url('/static/img/meat.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center 40%;
+            ">
                 <div>
                     <p>육질 등급표</p>
                 </div>
@@ -191,19 +62,6 @@
             $(document).on("click", "#btn", function(){
                 $("#beef_box").toggle("slow");
                 $("#pork_box").toggle("slow");
-
-                // var state = $("#btn").data('toggleState');
-
-                // fullpage_api.destroy('all');
-
-                // if(state){
-                //     $("#fullpage").html(eng_contain);
-                // }
-                // else{
-                //     $("#fullpage").html(kor_contain);
-                // }
-
-                // $("#btn").data('toggleState', !state);
             })
         </script>
         

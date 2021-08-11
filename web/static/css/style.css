@@ -98,6 +98,10 @@ header{     /* 제일 윗 부분 */
     color: var(--main-theme-color);
     font-weight: 600;
 }
+.tab_item:hover{ 
+    color: var(--main-theme-color);
+    font-weight: 600;
+}
 /* 탭들 오른쪽 로그인 회원가입 등 끝 */
 /* 헤더 끝 */
 
@@ -132,6 +136,138 @@ header{     /* 제일 윗 부분 */
 }
 
 
+
+/* 육질 등급표 & 등급 측정 페이지 시작 */
+
+#grade_table_img_box{
+    height: 200px;
+}
+#grade_table_img_box div{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+#grade_table_img_box p{
+    color: white;
+    font-weight: 900;
+    font-size: 40px;
+    text-align: center;
+    line-height: 200px;
+}
+
+.switch-button {
+    position: relative;
+    display: inline-block;
+    width: 300px; 
+    height: 50px;
+    margin-top: 40px;
+    z-index: 9999;
+    cursor: pointer;
+}
+.switch-button span{
+    z-index: -999;
+    font-weight: bold;
+    font-size: 24px;
+    color: black;
+    padding: 0 35px;
+    line-height: 50px;
+    
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.switch-button input { 
+    opacity: 0; 
+    width: 0; 
+    height: 0; 
+}
+
+.non_drag{
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    z-index: 2;
+  }
+.onoff-switch { 
+    position: absolute;
+    cursor: pointer; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    border-radius: 20px; 
+    /* background-color: white; */
+    box-shadow: inset 1px 1px 1px 1px gray; 
+    -webkit-transition: .4s; 
+    transition: .4s; 
+} 
+.onoff-switch:before { 
+    position: absolute; 
+    content: ""; 
+    height: 50px; 
+    width: 150px; 
+    left: 0;
+    background-color: rgb(255, 180, 0); 
+    -webkit-transition: .5s; 
+    transition: .4s; 
+    border-radius: 20px; 
+} 
+.switch-button input:checked + .onoff-switch { 
+    /* background-color: white; */
+    box-shadow: inset 1px 1px 1px 1px gray; 
+} 
+
+.switch-button input:checked + .onoff-switch:before { 
+    -webkit-transform: translateX(150px); 
+    -ms-transform: translateX(150px); 
+    transform: translateX(150px); 
+}
+
+.contain_box{
+    position: relative;
+    margin-top: 50px;
+    text-align: left;
+}
+.contain_box .numbering{
+    display: inline-block;
+    background: rgb(255, 180, 0);
+    width: 30px;
+    height: 30px;
+    margin-top: 50px;
+    margin-right: 10px;
+    border-radius: 15px;
+    line-height: 30px;
+    font-weight: bold;
+    font-size: 22px;
+    color: white;
+    text-align: center;
+}
+.contain_box .mini_title{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 26px;
+    font-weight: bold;
+}
+.contain_box .contain{
+    margin: 10px 0px 20px 40px;
+    color: #888888;
+    font-weight: bold;
+    font-size: 20px;
+}
+.contain_box span{
+    color: orange;
+}
+.contain_box img{
+    display: block;
+    width: 100%;
+}
+/* 육질 등급표 & 등급 측정 페이지 끝 */
+
 /* 등급 측정 페이지 시작 */
 #check_grade{
     width: 180px;
@@ -146,10 +282,11 @@ header{     /* 제일 윗 부분 */
 .zone {
     position: relative;
     margin: auto;
-    width: 50%;
-    height: fit-content;
-    border: 2px solid var(--main-theme-color);
-    border-radius: 25px;
+    width: 800px;
+    height: 350px;
+    border: 1px solid #ccc;
+    background: #dedede;
+    margin-top: 70px;
     text-align:center;
     z-index: 20;
     transition: all 0.3s ease-out;
@@ -173,18 +310,28 @@ header{     /* 제일 윗 부분 */
 .zone .selectFile {
     position: relative;
     display: inline-block;
+    display: none;
+    /* visibility: hidden; */
     width: 150px;
     height: 100px;
     margin: 0 auto;
 }
 .zone .upload_text{
     display: inline-block;
+    display: block;
     height: 100px;
-    line-height: 100px;
+    line-height: 30px;
     margin: 0 10px;
-    vertical-align: top;
+    /* vertical-align: top; */
     font-family: corbellight;
     font-weight: bold;
+}
+.zone .upload_text > img{
+    height: 100px;
+    margin-top: 30px;
+}
+.zone .upload_text p{
+    margin-top: 20px;
 }
 .zone label input {
     position: absolute;
@@ -249,7 +396,9 @@ header{     /* 제일 윗 부분 */
 }
 .fileBox{
     position: relative;
-    width: 90%;
+    max-width: 90%;
+    max-height: 200px;
+    width: fit-content;
     height: fit-height;
     margin: 30px auto;
     padding: 15px;
@@ -287,7 +436,8 @@ header{     /* 제일 윗 부분 */
 }
 .filename_text{
     display: inline-block;
-    width: 480px;
+    max-width: 480px;
+    width: fit-content;
     margin: auto;
     font-size: 14px;
     text-align: left;
@@ -694,78 +844,5 @@ footer{
     }
     article{
         /* width: 90vw; */
-    }
-    #wordpage_header div{
-        position: relative;
-        width: 100%;
-    }
-    #small_header{
-        position: relative;
-        width: 100%;
-        height: 100%;
-        padding: 15px 50px 10px 50px;
-        text-align: left;
-    }
-    .tab_item{ /* 학교소개 학교홍보 이런거 각각*/
-        display: inline-block;
-        height: 50px;
-        line-height: 50px;
-        font-weight: bold;
-        margin-right: 20px;
-        cursor: pointer;
-        font-size: 18px;
-    }
-
-    #login_box{
-        position: absolute;
-        width: 70%;
-        height: 55%;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        box-shadow: -1px 1px 100px -50px black, 1px -1px 100px -50px black;
-    }
-
-    #main_big_img_wrapper2 > div{ /* 메인 큰 이미지 박스 */
-        position: relative;
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-        text-align: center;
-        background-color: #000f1a;
-        background-image: url('/static/img/실습 페이지/최종-실습 페이지 배경.png');
-        background-repeat: no-repeat;
-        box-shadow: -25px 0 28px -8px #000f1a inset, 25px 0 28px -8px #000f1a inset;
-        background-size: 100%;
-        background-position: center 50%;
-    }
-    #main_big_img_wrapper > div{
-        width: 100%;
-        height: 100%;
-        padding-top: 160px;
-        padding-left: 30px;
-        margin: 0 auto;
-    }
-    #detail_box{ /* 초청학교 설명회 이런거 있는 큰 박스 */
-        width: 100%;
-        height: 400px;
-        color: #1e232e;
-        padding-top: 150px;
-        font-size: 28px;
-        font-weight: bold;
-        line-height: 38px;
-        text-align: right;
-    }
-
-    #contain_column_box{
-        width: 100%;
-    }
-
-    .footer_tab_box{
-        position: absolute;
-        width: 100%;
-        top: 35%;
-        left: 50%;
-        transform: translateX(-50%);
     }
   }

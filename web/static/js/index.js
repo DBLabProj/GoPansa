@@ -179,61 +179,6 @@ $(window).on('load', function(){
                         }
                     });
                 });
-
-                $("#reduce_btn").click(function(){
-                    var time = new Date().getTime();
-
-                    do_image_job("reduce_color", "#drawline_btn", ren_image_path);
-
-                    var temp = ren_image_path.split(".");
-
-                    $(".download_btn").eq(1).attr("href", ".."+temp[2]+"_reduce_1."+temp[3]);
-                    $(".download_btn").eq(2).attr("href", ".."+temp[2]+"_reduce_2."+temp[3]);
-                    $(".download_btn").eq(3).attr("href", ".."+temp[2]+"_reduce_3."+temp[3]);
-                    
-                    $("#a_reduce_input_1").attr("href", ".."+temp[2]+"_reduce_1."+temp[3]+'?time='+time);
-                    $("#a_reduce_input_2").attr("href", ".."+temp[2]+"_reduce_2."+temp[3]+'?time='+time);
-                    $("#a_reduce_input_3").attr("href", ".."+temp[2]+"_reduce_3."+temp[3]+'?time='+time);
-                    
-                    baguetteBox.run('.reduce_img_baguette', {
-                        noScrollbars: true
-                    });
-                })
-
-                $("#drawline_btn").click(function(){
-                    do_image_job("draw_line", "#numbering_btn", ren_image_path);
-
-                    var temp = ren_image_path.split(".");
-                    $(".download_btn").eq(4).attr("href", ren_image_path);
-                    $(".download_btn").eq(4).attr("href", ".."+temp[2]+"_linedraw."+temp[3]);
-                })
-
-                $("#numbering_btn").click(function(){
-                    do_image_job("numbering", null, ren_image_path);
-                    
-                    var temp = ren_image_path.split(".");
-                    $(".download_btn").eq(5).attr("href", ".."+temp[2]+"_numbering."+temp[3]);
-
-                    $("#input_color_label_btn").show();
-
-                    $("#input_color_label_btn").click(
-                        function(){
-                            var time = new Date().getTime();
-
-                            var state = $(this).data('toggleState');
-
-                            if(state){
-                                $("#numbering_img").attr('src', ".."+temp[2]+"_numbering_label."+temp[3])+'?time='+time;
-                                $(".download_btn").eq(5).attr("href", ".."+temp[2]+"_numbering_label."+temp[3]);
-                            }
-                            else{
-                                $("#numbering_img").attr('src', ".."+temp[2]+"_numbering."+temp[3])+'?time='+time;
-                                $(".download_btn").eq(5).attr("href", ".."+temp[2]+"_numbering."+temp[3]);
-                            }
-                            $(this).data('toggleState', !state);
-                        }
-                    );
-                })
             }
             else{
                 alert('이미지 파일만 업로드할 수 있습니다.');

@@ -14,7 +14,7 @@ import PIL
 
 class AIModel:
     def __init__(self):
-        self.dir = "./"
+        self.dir = "deeplearning_model/"
         self.pig_model = "pig1"
         self.pig_class = 3
         self.cow_model = "cow1"

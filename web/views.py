@@ -8,6 +8,7 @@ import os, json
 
 import logging
 from db.control_sql import Sql
+from deeplearning_model.checkGrade import AIModel
 from raspberry import rasp_control
 
 views = Blueprint("server", __name__)
@@ -215,8 +216,29 @@ def upload_img():
 
     # main 
     if success:
-        resp = jsonify({'message' : 'Files successfully uploaded'})
+        grade = {
+            "cow":{
+                0: "1",
+                1: "1+",
+                2: "1++",
+                3: "2",
+                4: "3"
+            },
+            "pig":{
+                0: "1+",
+                1: "1",
+                2: "2"
+            }
+        }
+        print(f'filepath:{filepath}')
+        model = AIModel()
+        output, index = model.cow(filepath)
+        result_grade = grade["cow"][index]
+        print(f'result_grade : {result_grade}')
+
+        resp = jsonify({'result' : result_grade})
         resp.status_code = 201
+
         return resp
 
     else:
