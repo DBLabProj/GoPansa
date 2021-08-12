@@ -95,6 +95,17 @@ header{     /* 제일 윗 부분 */
     cursor: pointer;
     font-size: 18px;
 }
+@media ( max-width: 570px ) {
+    .tab_item{
+        font-size: 20px;
+        margin-right: 20px;
+    }
+    .login_item{
+        font-size: 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
 /* 가운데 탭들 끝 */
 
 
