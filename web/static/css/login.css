@@ -185,7 +185,7 @@ margin: 0 auto;
   align-items: center;
   padding: 15px;
   position: relative;
-  background-color: #e6e6e6;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .wrap-login100 {
@@ -206,7 +206,8 @@ margin: 0 auto;
 .login100-form-title {
   font-family: Oswald-Medium;
   font-size: 30px;
-  color: #43383e;
+  /* color: #43383e; */
+  color: white;
   line-height: 1.2;
   text-align: center;
 

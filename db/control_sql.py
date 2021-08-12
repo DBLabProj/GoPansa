@@ -66,17 +66,16 @@ class Sql:
             return True
     
 
-    # 수정 -------------------------------------------- 
     # 회원가입하는 함수
     # input: id, password, name, phone_number, email
     # output: 1(완료), 2(ID 중복), 3(PW규칙위반), 4(SQL모듈에러)
-    def register(self, id, pw, name, phone=None, email=None):
+    def register(self, id, pw, name, main_store, phone=None, email=None):
         if len(pw) < 6:
             return 3 #PW 규칙위반
         sql = "INSERT INTO user VALUES(%s, %s, %s, %s, %s, %s, %s, %s);";
 
         try:
-            self.__cursor.execute(sql, (id, pw, "dummy", "N", name, None, phone, email))
+            self.__cursor.execute(sql, (id, pw, "dummy", "N", name, main_store, phone, email))
             self.__db.commit()
         except pymysql.err.IntegrityError as e:
             print(e)
@@ -86,6 +85,36 @@ class Sql:
             return 4
         
         return 1
+
+
+    def get_classify_result_data(self, no):
+        sql ="\
+            SELECT   c.no, c.datetime, c.meat_type, c.grade, c.image_name, u.main_store, r.address\
+            FROM     classify c, user u, restaurant r\
+            WHERE    c.user_id = u.id\
+            AND      u.main_store = r.business_name\
+            AND      c.no = %s"
+        
+        try:
+            self.__cursor.execute(sql, no)
+            result = self.__cursor.fetchone()
+        except pymysql.Error as e:
+            print(e)
+        
+        if result is None:
+            return -1
+        else:
+            if result['meat_type'] == "P":
+                result['meat_type'] = "돼지고기"
+            elif result['meat_type'] == "B":
+                result['meat_type'] = "소고기"
+            else:
+                return -1
+
+            result['datetime'] = str(result['datetime'])
+
+        return result
+
 
     # 수정 -------------------------------------------- 
     def regi_store(self, name, user_id, latitude, longitude, address=None, tel=None, time=None):

@@ -142,9 +142,10 @@ def regist():
         username = request.form["username"]
         b_type = request.form["kinds"]
         b_name = request.form["store"]
+        cb_number = request.form["cb_number"]
         
         sql = getSql()
-        result = sql.register(id, pw, username, phone)
+        result = sql.register(id, pw, username, cb_number)
                     
         if result == 2:
             return "<script>alert('이미 사용중인 아이디입니다.');</script>"+render_template("regist.html", id='')
@@ -184,7 +185,7 @@ def check_label():
         
         if not err:
             pass
-            label_data = getSql().get_labeldata(label_code)
+            label_data = getSql().get_classify_result_data(label_code)
             
             print( "label_data",label_data )
         else:
@@ -200,7 +201,7 @@ def check_label():
     if label_img.filename == "":
         pass
 
-    return jsonify(data="success")
+    return jsonify(data=label_data)
     
 @views.route("/map", methods=["GET"])
 def map():

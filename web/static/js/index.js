@@ -9,7 +9,56 @@ $(window).on('load', function(){
     $('.btn-example').click(function(){
         var $href = $(this).attr('href');
         layer_popup($href);
-        search_label();
+        
+		// Get form
+		var form = $('#label_form')[0];
+
+		// Create an FormData object 
+		var data = new FormData(form);
+
+        
+		$.ajax({
+			type: "POST",
+			enctype: 'multipart/form-data',
+			url: '/check_label',	// form을 전송할 실제 파일경로
+			data: data,
+			processData: false,
+			contentType: false,
+			cache: false,
+			timeout: 600000,
+			beforeSend : function() {
+				// 전송 전 실행 코드
+			},
+			success: function (data) {
+				// 전송 후 성공 시 실행 코드
+
+                var html = `<b>${data.data.no}</b><br>
+                <p>측정일시: ${data.data.datetime}</p><br>
+                <p>측정분류: ${data.data.meat_type}</p>`;
+
+                $("#classify-info").html(html);
+                
+                html = `<span>${data.data.grade}</span><br>`;
+                // <p style='position:absolute;top -160px;transform:translateX(-50%); color: white; font-size: 12px;'>등급</p>`;
+                $("#grade-info").html(html);
+
+                
+                var html = `<p>측정상호명: ${data.data.main_store}</p><br>
+                <p>상호주소: ${data.data.address}</p><br>`;
+
+                $("#store_info").html(html);
+
+                // html = `<p>${data.data.gra}</p>`
+                
+                // classify-info
+                // grade-info
+                // store_info
+			},
+			error: function (e) {
+				// 전송 후 에러 발생 시 실행 코드
+				console.log("ERROR : ", e);
+			}
+		});
     });
     function layer_popup(el){
 
@@ -75,7 +124,29 @@ $(window).on('load', function(){
 			},
 			success: function (data) {
 				// 전송 후 성공 시 실행 코드
-				console.log(data);
+				console.log(data.data);
+                var meat_type = "";
+                
+                if (data.data.meat_type=="1"){
+                    meat_type = "소고기";
+                }
+                else if(data.data.meat_type=="2"){
+                    meat_type = "돼지고기";
+                }
+                var html = `<b>${data.data.no}</b><br>
+                <p>측정일시:${data.data.datetime}</p><br>
+                <p>측정분류:${meat_type}</p>`;
+
+                $("#classify-info").html(html);
+                
+                html = `${data.data.grade}`;
+                $("#grade-info").html(html);
+
+                // html = `<p>${data.data.gra}</p>`
+                
+                // classify-info
+                // grade-info
+                // store_info
 			},
 			error: function (e) {
 				// 전송 후 에러 발생 시 실행 코드
