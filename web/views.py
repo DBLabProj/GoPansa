@@ -141,11 +141,13 @@ def regist():
         phone = request.form["PHONE"]
         username = request.form["username"]
         b_type = request.form["kinds"]
-        b_name = request.form["store"]
-        cb_number = request.form["cb_number"]
+        # b_name = request.form["store"]
+        b_name = '착한생고기'
+        # cb_number = request.form["cb_number"]
+        # cb_number = "착한생고기"
         
         sql = getSql()
-        result = sql.register(id, pw, username, cb_number)
+        result = sql.register(id, pw, username, b_name)
                     
         if result == 2:
             return "<script>alert('이미 사용중인 아이디입니다.');</script>"+render_template("regist.html", id='')
