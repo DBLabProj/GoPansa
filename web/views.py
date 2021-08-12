@@ -321,7 +321,7 @@ def upload_img():
                 "meat_type": meat_type,
                 "grade": result_grade
             }
-            sql.create_label(label_info  )
+            create_label(label_info  )
             
             # 라벨 버튼 생성해주기
             
