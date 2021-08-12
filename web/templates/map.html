@@ -40,9 +40,31 @@
     .editor-datetime {
       position: relative;
    }
-   article{
-       width: 70vw;
-   }
+    article{
+        width: 70vw;
+        margin-top: 300px;
+    }
+    #grade_table_img_box{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 300px;
+    }
+    
+    /* #grade_table_img_box{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;    
+        height: 350px;
+    } */
+    #small_header{
+        background-color: rgba( 0, 0,0 , 0.2 ) ;
+        z-index:999;
+        color: #d7d7d7;
+        border: none;
+    }
 
    
     #zoom {
@@ -313,6 +335,15 @@
 
 <body onload="initTmap()"><!-- 맵 생성 실행 -->
     {% include "menu_template.html" %}
+    <script>
+        $('#logo_img').attr('src', '/static/img/메인화면/logo_white.png');
+    </script>
+    <div id="grade_table_img_box" style="
+        background-image: url('/static/img/meat_map.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center 40%;
+    ">
     <center>
         <article>
     
@@ -355,7 +386,7 @@
             <form method="post" class="post-form my-3" style="margin:0px!important; padding:0px; width: 100%;">
                 <div class="mb-3 row" id="info-row" style="min-width:100%;">
                     <div style="text-align:left;">
-                        <text class="offcanvas-title" id="info_title" style="color:#58c9b9;font-size:24px;font-family:넥슨 고딕 bold;"></text>
+                        <text class="offcanvas-title" id="info_title" style="color:#FF4C29;font-size:24px;font-family:넥슨 고딕 bold;"></text>
                         <span class="badge rounded-pill bg-secondary" id="info_type" style=" background-color:#4C4C4C;"></span>
                     </div>
                     <text style="font-size:14px;  color:#4C4C4C;" id="info_address" style="max-width:100%"></text>
@@ -376,13 +407,13 @@
                 <div class="row">
                     
                     <div class="col-6" style="padding:0px 3px;">
-                        <button type="button" class="btn" id="info_btn_roadview" style="background-color:#58c9b9; color:white; width:100%; font-family:넥슨 고딕 bold;">
+                        <button type="button" class="btn" id="info_btn_roadview" style="background-color:#FF4C29; color:white; width:100%; font-family:넥슨 고딕 bold;">
                             로 드 뷰 보 기
                         </button>
                     </div>
                     
                     <div class="col-6" style="padding:0px 3px;">
-                        <button type="button" class="btn" id="info_btn_navi" style="background-color:#58c9b9; color:white; width:100%; font-family:넥슨 고딕 bold;">
+                        <button type="button" class="btn" id="info_btn_navi" style="background-color:#FF4C29; color:white; width:100%; font-family:넥슨 고딕 bold;">
                             길 찾 기
                         </button>
                     </div>

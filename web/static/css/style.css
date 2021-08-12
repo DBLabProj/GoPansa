@@ -109,11 +109,12 @@ header{     /* 제일 윗 부분 */
 .login_item{ 
     display: inline-block;
     margin-left: 15px;
+    margin-right: 15px;
     height: 30px;
     line-height: 30px;
     cursor: pointer;
-    font-size: 14px;
-    color: #53575e;
+    /* color: #53575e; */
+    color: #d7d7d7;
     font-weight: 600;
 }
 
@@ -220,14 +221,14 @@ header{     /* 제일 윗 부분 */
     height: 200px;
 }
 #grade_table_img_box div{
-    background-color: rgba(0, 0, 0, 0.3);
+    /* background-color: rgba(0, 0, 0, 0.3); */
 }
 #grade_table_img_box p{
     color: white;
     font-weight: 900;
     font-size: 40px;
     text-align: center;
-    line-height: 200px;
+    line-height: 50px;
 }
 
 .switch-button {
@@ -397,6 +398,7 @@ header{     /* 제일 윗 부분 */
     margin: 0 auto;
 }
 .zone .upload_text{
+    position: absolute;
     display: inline-block;
     display: block;
     height: 100px;
@@ -406,7 +408,7 @@ header{     /* 제일 윗 부분 */
     font-family: corbellight;
     font-weight: bold;
 }
-.zone .upload_text > img{
+#dropZ img{
     height: 100px;
     width: auto;
     margin: 30px auto 0;
@@ -476,13 +478,18 @@ header{     /* 제일 윗 부분 */
     opacity: 1;
 }
 .fileBox{
-    position: relative;
-    max-width: 90%;
-    max-height: 200px;
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    /* max-width: 90%;
+    max-height: 90%; */
     width: fit-content;
-    height: fit-height;
-    margin: 30px auto;
+    margin: 10px auto;
     padding: 15px;
+
+    top: -7%;
+    left: 50%;
+    transform: translateX(-50%);
     
     border: 2px solid var(--main-theme-color);
 
@@ -503,6 +510,8 @@ header{     /* 제일 윗 부분 */
 }
 .fileBox img{
     display: inline-block;
+    max-width: 90%;
+    max-height: 200px;
     width: 100px;
     margin-right: 20px;
     left: 0;
@@ -533,6 +542,7 @@ header{     /* 제일 윗 부분 */
     line-height: 90px;
     font-size: 20pt;
     font-family: arialblack;
+    text-align: center;
     margin: 50px auto;
     cursor: pointer;
 }
@@ -549,16 +559,26 @@ header{     /* 제일 윗 부분 */
     z-index: -1;
 }
 #camera + label {
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
     font-size: 1.25em;
     font-weight: 700;
     color: white;
     background-color: black;
     display: inline-block;
+    cursor: pointer;
 }
 
 #camera:focus + label,
 #camera + label:hover {
     background-color: red;
+}
+
+#grade_result{
+    font-size: 24px;
+    margin: 70px auto 0;
+    font-weight: bold;
 }
 /* 등급 측정 페이지 끝 */
 
@@ -720,24 +740,9 @@ footer{
 
 
 
-@media ( max-width: 1500px ) {
-    #login_box{
-        position: absolute;
-        width: 40%;
-        height: 55%;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        box-shadow: -1px 1px 100px -50px black, 1px -1px 100px -50px black;
-    }
-}
-
 /* 모바일용 (반응형 웹) */
-@media ( max-width: 1025px ) {
-    body{
-        overflow-x: scroll;
-    }
+@media ( max-width: 570px ) {
     article{
-        /* width: 90vw; */
+        width: 100vw;
     }
   }

@@ -9,7 +9,7 @@ import os, json
 import logging
 from db.control_sql import Sql
 from deeplearning_model.checkGrade import AIModel
-from labeling.control_label import *
+from labeling.label_control import *
 from raspberry import rasp_control
 from .utils import *
 
@@ -236,7 +236,13 @@ def upload_img():
         return resp
 
     files = request.files.getlist('file')
-    meat_type = "pork"
+    meat_type = request.form['meat']
+
+    if meat_type == "false":
+        meat_type = "beef"
+
+    elif meat_type == "true":
+        meat_type = "pork"
     
     errors = {}
     success = False
@@ -281,6 +287,8 @@ def upload_img():
         }
         print(f'filepath:{filepath}')
         model = AIModel()
+        result_grade = None
+
         if meat_type == "beef":
             output, index = model.cow(filepath)
             result_grade = grade["cow"][index]
@@ -313,7 +321,7 @@ def upload_img():
                 "meat_type": meat_type,
                 "grade": result_grade
             }
-            create_label(label_info  )
+            sql.create_label(label_info  )
             
             # 라벨 버튼 생성해주기
             

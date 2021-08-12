@@ -28,65 +28,99 @@
 </head>
 
 <style>
-.meat_category{
-	font-size: 15px;
-	margin-top: 50px;
-	<!-- width: 50%; -->
-}
-.meat_label{
-	<!-- margin: 20px; -->
-}
-.radioset {
-    padding: 15px 10px;
-    display: inline-block;
-}
-.radioset input[type=radio]{
-    display: none;
-	border: solid #D8D8D8 1px;
-}
-.radioset input[type=radio]+label{
-    display: inline-block;
-    cursor: pointer;
-    height: 30px;
-    width: 110px;
-	vertical-align: bottom;
-    border: 1px solid #333;
-    line-height: 24px;
-    text-align: center;
-    font-weight:bold;
-    font-size:15px;
-}
-.radioset input[type=radio]+label{
-    background-color: #fff;
-    color: #333;
-	border: solid #BDBDBD 1px;
-}
+    article{
+        width: 70vw;
+        margin-top: 300px;
+    }
+    #grade_table_img_box{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 300px;
+    }
+    
+    /* #grade_table_img_box{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;    
+        height: 350px;
+    } */
+    #small_header{
+        background-color: rgba( 0, 0,0 , 0.2 ) ;
+        z-index:999;
+        color: #d7d7d7;
+        border: none;
+    }
 
-/*선택됨*/
-.radioset input[type=radio]:checked+label{
-    background-color: #FE642E;
-    color: #fff;
-	border: solid #BDBDBD 1px;
-}
+    .meat_category{
+        font-size: 15px;
+        margin-top: 50px;
+        /* width: 50%; */
+    }
+    .meat_label{
+        /* margin: 20px; */
+    }
+    .radioset {
+        padding: 15px 10px;
+        display: inline-block;
+    }
+    .radioset input[type=radio]{
+        display: none;
+        border: solid #D8D8D8 1px;
+    }
+    .radioset input[type=radio]+label{
+        display: inline-block;
+        cursor: pointer;
+        height: 30px;
+        width: 110px;
+        vertical-align: bottom;
+        border: 1px solid #333;
+        line-height: 24px;
+        text-align: center;
+        font-weight:bold;
+        font-size:15px;
+    }
+    .radioset input[type=radio]+label{
+        background-color: #fff;
+        color: #333;
+        border: solid #BDBDBD 1px;
+    }
 
+    /*선택됨*/
+    .radioset input[type=radio]:checked+label{
+        background-color: #FE642E;
+        color: #fff;
+        border: solid #BDBDBD 1px;
+    }
 </style>
 
 <body>
     {% include "menu_template.html" %}
+    <script>
+        $('#logo_img').attr('src', '/static/img/메인화면/logo_white.png');
+    </script>
+    <div id="grade_table_img_box" style="
+        background-image: url('/static/img/meat_grade_classify.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center 40%;
+    ">
     <center>
     <article>
 
         <div id="big_contain">
             <!-- 가운데 큰 그림 시작 -->
-            <div id="grade_table_img_box" style="
+            <!-- <div id="grade_table_img_box" style="
                 background-image: url('/static/img/meat2.jpg');
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-position: center 15%;
-            ">
-                <div>
+            "> -->
+                <!-- <div>
                     <p>육질 등급 측정</p>
-                </div>
+                </div> -->
             </div>
             <!-- 가운데 큰 그림 끝 -->
 
@@ -94,17 +128,25 @@
             <label class='switch-button' >
                 <span class='img_btn'>이미지</span>
                 <span class='cmr_btn'> 카메라</span>
-                <input type='checkbox' id='btn'>
+                <input type='checkbox' id='camera_btn'>
                 <span class='onoff-switch'></span>               
             </label>
 			<br><br>
-			<label class='meat_category' >
+			<!-- <label class='meat_category' style='display: none'>
 				<div class="radioset">
 					<input type="radio" name="meat" value="beaf" id="beef" checked><label for="beef">소고기</label>
 					<input type="radio" name="meat" value="pork" id="pork" > <label for='pork'>돼지고기</label>            
 				</div>
-			</label>
+			</label> -->
+            <label class='switch-button' >
+                <span class='img_btn'>소고기</span>
+                <span class='cmr_btn'> 돼지고기</span>
+                <input type='checkbox' id='meat_btn'>
+                <span class='onoff-switch'></span>               
+            </label>
             
+            <div id="grade_result"></div>
+
             <div id='gallery_box' class="contain_box">
                 <div class="zone">
                     <div id="dropZ">
@@ -113,7 +155,7 @@
                             <input type="file" name="files[]" id="file" capture="camera" accept='image/jpeg,image/png'>
                         </div>
 
-                        <div class='upload_text'>
+                        <div class='`   3                                                           '>
                             <img src="/static/img/meat3.png">
                             <p style="font-size: 36px; color: #727272"><b>측정하실 고기의 이미지를 업로드 하세요</b></p>
                             <p style="font-size: 26px; color: #9c9c9c"><b>업로드 할 파일을</b></p>
@@ -140,6 +182,7 @@
                             $('.classify_btn').click(function(){
                                 var formData = new FormData();
                                 formData.append("file", e.target.files[0]);
+                                formData.append("meat", $("#meat_btn").prop('checked'));
 								
                                 $.ajax({
                                     type: 'POST',
@@ -151,7 +194,7 @@
                                     },
                                     data: formData,
                                     success: function (data) {
-                                        alert(data.result);
+                                        $("#grade_result").text(`${data.result} 등급입니다.`);
                                     },
                                     error: function (error) {
                                         console.error(error);
@@ -170,17 +213,19 @@
             </div>
 
         </div>
-
-        <script>
-            $(document).on("click", "#btn", function(){
-                $("#gallery_box").toggle("slow");
-                $("#camera_box").toggle("slow");
-            })
-        </script>
    </article>
    </center>
    
    <script>
+        $(document).on("click", "#camera_btn", function(){
+            $("#gallery_box").toggle("slow");
+            $("#camera_box").toggle("slow");
+        });
+        
+        $(document).on("click", "#meat_btn", function(){
+            console.log($(this).prop('checked'));
+        });
+        
         function close_btn(target){
             $(".fileBox").remove();
             $("#file").val(null);
@@ -304,7 +349,8 @@
                         $('.classify_btn').click(function(){
                             var formData = new FormData();
                             formData.append("file", f);
-							<!-- formData.append("type",$('input:checkbox[input[name="meat"]:checked').val(); ); -->
+                            formData.append("meat", $("#meat_btn").prop('checked'));
+							//formData.append("type",$('input:checkbox[input[name="meat"]:checked').val() );
         
                             $.ajax({
                                 type: 'POST',
@@ -316,7 +362,7 @@
                                 },
                                 data: formData,
                                 success: function (data) {
-                                    alert(data.result);
+                                    $("#grade_result").text(`${data.result} 등급입니다.`);
                                 },
                                 error: function (error) {
                                     console.error(error);
