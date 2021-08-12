@@ -11,6 +11,7 @@ from db.control_sql import Sql
 from deeplearning_model.checkGrade import AIModel
 from labeling.control_label import *
 from raspberry import rasp_control
+from .utils import *
 
 views = Blueprint("server", __name__)
 log = logging.getLogger('werkzeug')
@@ -235,7 +236,8 @@ def upload_img():
         return resp
 
     files = request.files.getlist('file')
-
+    meat_type = "pork"
+    
     errors = {}
     success = False
     filepath = None
@@ -279,21 +281,44 @@ def upload_img():
         }
         print(f'filepath:{filepath}')
         model = AIModel()
-        output, index = model.cow(filepath)
-        result_grade = grade["cow"][index]
+        if meat_type == "beef":
+            output, index = model.cow(filepath)
+            result_grade = grade["cow"][index]
 
+        elif meat_type == "pork":
+            output, index = model.pig(filepath)
+            result_grade = grade["pig"][index]
+        
         print(f'result_grade : {result_grade}')
 
         resp = jsonify({'result' : result_grade})
         resp.status_code = 201
 
-        sql = Sql('203.252.240.74', 'classify_meat', 'dblab', 'dblab6100')
+        sql = getSql()
         id, name = get_id_name()
-
-        result = sql.is_user_premium(id)
-        if result is not None and not(result.isdigit()):
-            label_info = sql.get_labeldata()
-            create_label(label_info)
+        # print(id)
+        result = sql.get_user_grade(id)
+        print("result", result)
+        
+        if result  == "P":
+            # id, name, filename, meat_type, result_grade
+            meat_type_ = 'B' if meat_type == "beef" else "P"
+            label_no = sql.insert_classify_data(id, filename, meat_type_, result_grade)
+            
+            # 여기에 디비 입력
+            label_info = {
+                "no": label_no,
+                "datetime": getNowTime(),
+                "name": name,
+                "meat_type": meat_type,
+                "grade": result_grade
+            }
+            create_label(label_info  )
+            
+            # 라벨 버튼 생성해주기
+            
+        else:
+            print("프리미엄 고객 아님")
 
         return resp
 
