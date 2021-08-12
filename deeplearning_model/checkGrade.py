@@ -14,7 +14,7 @@ import PIL
 
 class AIModel:
     def __init__(self):
-        self.dir = "deeplearning_model/"
+        self.dir = "./deeplearning_model/"
         self.pig_model = "pig1"
         self.pig_class = 3
         self.cow_model = "cow1"
@@ -37,7 +37,7 @@ class AIModel:
         model=models.resnext50_32x4d(pretrained=False)
         model.fc=nn.Linear(model.fc.in_features, classes)
         checkpoint = torch.load(model_path+".pht", map_location=self.__device)
-        model.load_state_dict(checkpoint['state_dict'])
+        model.load_state_dict(checkpoint, strict=False)
         model = model.eval()
         
         return model
