@@ -9,7 +9,7 @@ import os
 # input: 'no' values
 # output: label image file
 def create_label(classify_info):
-    os.mkdir('./labels', exist_ok=True)
+    os.makedirs('./labels', exist_ok=True)
     no = classify_info["no"]
     datetime =  classify_info["datetime"]
     name = classify_info["name"]
@@ -17,9 +17,9 @@ def create_label(classify_info):
     grade = classify_info["grade"]
     print(os.getcwd())
     print(os.listdir(os.getcwd()))
-    content_font = ImageFont.truetype("./static/fonts/ONE Mobile Regular.ttf", 12)
-    grade_font = ImageFont.truetype("./static/fonts/GmarketSansTTFBold.ttf", 36)
-    title_font = ImageFont.truetype("./static/fonts/ONE Mobile Bold.ttf", 18)
+    content_font = ImageFont.truetype("web/static/font/ONE Mobile Regular.ttf", 12)
+    grade_font = ImageFont.truetype("web/static/font/GmarketSansTTFBold.ttf", 36)
+    title_font = ImageFont.truetype("web/static/font/ONE Mobile Bold.ttf", 18)
     img_width = 220
     img_height = 73
     padding = 5
