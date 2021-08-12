@@ -1,4 +1,5 @@
 import pymysql
+import time
 
 class Sql:
     def __init__(self, host, db, user, password):
@@ -118,6 +119,7 @@ class Sql:
     # output: grade(정상), 2(SQL에러), 3(유저 없음)
     def get_user_grade(self, user_id):
         sql = "SELECT grade FROM user WHERE id=%s"
+        #   N  B P
         try:
             self.__cursor.execute(sql, user_id)
             result = self.__cursor.fetchone()
@@ -267,7 +269,60 @@ class Sql:
             return "현재 서비스에 장애가 발생하였습니다."
             
         return store_addr
+    
 
+    # 오늘날짜 불러오는 함수
+    # input: none
+    # output: str(yymmdd)
+    def __get_today(self):
+        return time.strftime("%y%m%d", time.localtime(time.time()))
+    
+    # 현재시간 불러오는 함수
+    # input: none
+    # output: str(yymmdd)
+    def __get_datetime(self):
+        return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
+
+
+    # 측정 일련번호 생성을 위해 해당 날짜에서 측정이 몇번 이뤄줬는지 확인하는 함수
+    # input: none
+    # output: str(Ex. 0005)
+    def __classify_count(self):
+        today = self.__get_today()
+
+        sql = "\
+            SELECT  count(date_format(datetime, '%y%m%d')) num\
+            FROM    classify\
+            WHERE   date_format(datetime, '%y%m%d')=" + today + ";"
+
+        try:
+            self.__cursor.execute(sql)
+            result = self.__cursor.fetchone()
+        except pymysql.Error as e:
+            print(e)
+        
+        if result is None:
+            num = 1 # 결과없으면 1부터 시작
+        else:
+            num = result['num'] + 1 #결과있으면 개수+1임
+        
+        return str(num).zfill(4) # 0004 문자열 형식으로 출력
+
+
+    def insert_classify_data(self, user_id, image_name, meat_type, grade):
+        sql = "INSERT INTO classify VALUES(%s, %s, %s, %s, %s, %s);"
+        count = self.__classify_count()
+        today = self.__get_today()
+        no = today + "-" + meat_type + count
+        datetime = self.__get_datetime()
+
+        try:
+            self.__cursor.execute(sql, (no, datetime, user_id, image_name, meat_type, grade))
+            self.__db.commit()
+        except pymysql.Error as e:
+            print(e)
+            
+        return no
 
 
 # sql = Sql('203.252.240.74', 'classify_meat', 'dblab', 'dblab6100')
