@@ -281,9 +281,9 @@ def upload_img():
                 4: "3"
             },
             "pig":{
-                0: "1+",
+                2: "1+",
                 1: "1",
-                2: "2"
+                0: "2"
             }
         }
         print(f'filepath:{filepath}')
