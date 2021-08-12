@@ -69,7 +69,7 @@ class Sql:
     # 회원가입하는 함수
     # input: id, password, name, phone_number, email
     # output: 1(완료), 2(ID 중복), 3(PW규칙위반), 4(SQL모듈에러)
-    def register(self, id, pw, name, main_store, phone=None, email=None):
+    def register2(self, id, pw, name, main_store, phone=None, email=None):
         if len(pw) < 6:
             return 3 #PW 규칙위반
         sql = "INSERT INTO user VALUES(%s, %s, %s, %s, %s, %s, %s, %s);";
@@ -85,7 +85,27 @@ class Sql:
             return 4
         
         return 1
+    
+       # 회원가입하는 함수
+    # input: id, password, name, phone_number, email
+    # output: 1(완료), 2(ID 중복), 3(PW규칙위반), 4(SQL모듈에러)
+    def register(self, id, pw, name, main_store, phone=None, email=None):
+        if len(pw) < 6:
+            return 3 #PW 규칙위반
+        sql = "INSERT INTO user VALUES(%s, %s, %s, %s, %s, %s, %s, %s);";
 
+        try:
+            print(main_store)
+            self.__cursor.execute(sql, (id, pw, "dummy", "N", name, main_store, phone, email))
+            self.__db.commit()
+        except pymysql.err.IntegrityError as e:
+            print(e)
+            return 2 #ID 중복
+        except pymysql.Error as e:
+            print(e)
+            return 4
+        
+        return 1
 
     def get_classify_result_data(self, no):
         sql ="\
