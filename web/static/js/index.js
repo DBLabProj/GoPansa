@@ -82,7 +82,7 @@ $(window).on('load', function(){
             $el.css({top: 0, left: 0});
         }
 
-        $el.find('a.btn-layerClose').click(function(){
+        $el.find('#result-close').click(function(){
             isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
             return false;
         });
