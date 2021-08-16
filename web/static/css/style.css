@@ -52,18 +52,33 @@ header{     /* 제일 윗 부분 */
 }
 
 
-#small_header{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 10px 20px 10px 20px;
-    text-align: left;
-    /* border-bottom: 2px solid #f0f0f0; */
-    
-    z-index: 999;
-    background-color: rgba( 0, 0, 0 , 0.2 ) ;
-    color: #d7d7d7;
-    border: none;
+@media (min-width: 1200px){
+    #small_header{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 10px 20px 10px 20px;
+        text-align: left;
+        
+        z-index: 999;
+        background-color: rgba( 0, 0, 0 , 0.2 ) ;
+        color: #d7d7d7;
+        border: none;
+    }
+}
+@media (max-width: 1200px){
+    #small_header{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 10px 20px 10px 20px;
+        text-align: left;
+        
+        z-index: 999;
+        background-color: rgba( 0, 0, 0 , 0.2 ) ;
+        color: #d7d7d7;
+        border: none;
+    }
 }
 
 
@@ -98,27 +113,6 @@ header{     /* 제일 윗 부분 */
     cursor: pointer;
     font-size: 18px;
 }
-/* @media ( max-width: 570px ) {
-    #logo_box{
-        margin-top: 15px;
-    }
-    #logo_box img{
-        width: 50px;
-        height: 20px;
-    }
-    #tab_box{
-        margin-left: 20px;
-    }
-    .tab_item{
-        font-size: 14px;
-        margin-right: 5px;
-    }
-    .login_item{
-        font-size: 14px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-} */
 /***** 가운데 탭들 끝 *****/
 
 
@@ -484,10 +478,21 @@ a.btn-layerClose:hover {
 /***** 주변업체찾기 (map) 끝 *****/
 
 
-
-#big_contain{ /* 헤더, 푸터 제외 모든 내용 바깥 큰박스 (소개페이지)*/
-    position: relative;
-    width: 100%;
+@media (min-width: 1200px){
+    #big_contain{ /* 헤더, 푸터 제외 모든 내용 바깥 큰박스 (소개페이지)*/
+        position: relative;
+        width: 60%;
+        top: 300px;
+        padding-bottom: 200px;
+    }
+}
+@media (max-width: 1200px){
+    #big_contain{ /* 헤더, 푸터 제외 모든 내용 바깥 큰박스 (소개페이지)*/
+        position: relative;
+        width: 95%;
+        top: 300px;
+        padding-bottom: 300px;
+    }
 }
 
 #top_article{
@@ -515,6 +520,44 @@ a.btn-layerClose:hover {
 
 
 /***** 육질 등급표 & 등급 측정 페이지 시작 *****/
+.meat_category{
+    font-size: 15px;
+    margin-top: 50px;
+    /* width: 50%; */
+}
+.radioset {
+    padding: 15px 10px;
+    display: inline-block;
+}
+.radioset input[type=radio]{
+    display: none;
+    border: solid #D8D8D8 1px;
+}
+.radioset input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 30px;
+    width: 110px;
+    vertical-align: bottom;
+    border: 1px solid #333;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:15px;
+    }
+    .radioset input[type=radio]+label{
+        background-color: #fff;
+        color: #333;
+        border: solid #BDBDBD 1px;
+    }
+
+    /*선택됨*/
+    .radioset input[type=radio]:checked+label{
+        background-color: #FE642E;
+        color: #fff;
+        border: solid #BDBDBD 1px;
+    }
+
 #grade_table_img_box p{
     color: white;
     font-weight: 900;
