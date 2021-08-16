@@ -68,7 +68,7 @@ header{     /* 제일 윗 부분 */
 
 
 
-/* 로고 시작 */
+/***** 로고 시작 *****/
 #logo_box{/* logo 감싸는 박스 */
     position: absolute;
     display: inline-block;
@@ -80,10 +80,10 @@ header{     /* 제일 윗 부분 */
     height: 50px;
     margin-right: 5px;
 }
-/* 로고 끝 */
+/***** 로고 끝 *****/
 
 
-/* 가운데 탭들 시작*/
+/***** 가운데 탭들 시작 *****/
 #tab_box{ /* 탭들 감싸는 박스 */
     position: absolute;
     display: inline-block;
@@ -119,7 +119,7 @@ header{     /* 제일 윗 부분 */
         margin-right: 5px;
     }
 } */
-/* 가운데 탭들 끝 */
+/***** 가운데 탭들 끝 *****/
 
 
 /* 탭들 오른쪽 로그인 회원가입 등 시작 */
@@ -151,11 +151,11 @@ header{     /* 제일 윗 부분 */
     font-weight: 600;
 }
 /* 탭들 오른쪽 로그인 회원가입 등 끝 */
-/* 헤더 끝 */
+/***** 헤더 끝 *****/
 
 
 
-/* 인덱스페이지 전용 시작 */
+/***** 인덱스페이지 전용 시작 *****/
 
 /* 레이어팝업 시작 */
 .pop-layer .pop-container {
@@ -357,8 +357,131 @@ a.btn-layerClose:hover {
     height: auto;
     margin: 0 auto;
 }
-/* 인덱스페이지 전용 끝 */
+/***** 인덱스페이지 전용 끝 *****/
 
+
+
+
+/***** 주변업체찾기 (map) 시작 *****/
+
+.editor-datetime {
+    position: relative;
+ }
+  #grade_table_img_box{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 300px;
+  }
+  #zoom {
+      position: absolute;
+      top: 140px;
+      right: 20px;
+      z-index: 1;
+  }
+
+  #research {
+      font-family: '넥슨 고딕';
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform:translate(-50%, 0%);
+      z-index: 1;
+      max-width:100%;
+  }
+
+  #ctr_btn {
+      width:110%;
+      box-shadow: 0 2px 1px 0 rgb(0 0 0 / 10%), 0 0 3px 0 rgb(0 0 0 / 32%);
+  }
+
+  #ctr_btn_small {
+      width: 50px;
+      height: 50px;
+      box-shadow: 0 2px 1px 0 rgb(0 0 0 / 10%), 0 0 3px 0 rgb(0 0 0 / 32%);
+  }
+
+  #ctr_btn {
+      box-shadow: 0 2px 1px 0 rgb(0 0 0 / 10%), 0 0 3px 0 rgb(0 0 0 / 32%);
+  }
+
+  #my_location {
+      position: absolute;
+      top: 300px;
+      right: 20px;
+      z-index: 1;
+  }
+
+  #ctr_icon_font {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #545454;
+  }
+
+  .offcanvas-header {
+      font-family: '넥슨 고딕' !important;
+      height: auto !important;
+  }
+
+  .offcanvas-bottom {
+      left:50%;
+      transform:translateX(-50%) !important;
+      font-family: '넥슨 고딕';
+      border-radius: 20px 20px 0px 0px !important;
+      height: auto !important;
+      width: 420px;
+      word-break:break-all;
+  }
+
+  #offcanvas-info {
+      background-color: gray;
+  }
+
+
+  #info_body {
+      border-radius: 5px;
+  }
+
+  #info_address {
+      text-align: left;
+      white-space: normal !important;
+  }
+
+  #info_line {
+      margin: 0;
+  }
+
+  .offcanvas-body {
+      padding-top: 10px !important;
+  }
+
+  #map_div {
+      position: relative;
+      top: 230px;
+      height: 100%;
+  }
+
+  .navi_button {
+      border: none;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+  }
+
+  #find_way {
+      position:absolute; top:10px; right:10px;  border:none; background:none;
+  }
+
+  #map_div ol { 
+      padding-left: 0px !important;
+  }
+
+  #map_div li {
+      list-style: none; 
+  }
+/***** 주변업체찾기 (map) 끝 *****/
 
 
 
@@ -391,14 +514,7 @@ a.btn-layerClose:hover {
 
 
 
-/* 육질 등급표 & 등급 측정 페이지 시작 */
-
-#grade_table_img_box{
-    height: 200px;
-}
-#grade_table_img_box div{
-    /* background-color: rgba(0, 0, 0, 0.3); */
-}
+/***** 육질 등급표 & 등급 측정 페이지 시작 *****/
 #grade_table_img_box p{
     color: white;
     font-weight: 900;
