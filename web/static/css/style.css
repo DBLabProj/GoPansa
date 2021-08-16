@@ -65,13 +65,45 @@ header{     /* 제일 윗 부분 */
         color: #d7d7d7;
         border: none;
     }
+    
+    /***** 로고 시작 *****/
+    #logo_box{/* logo 감싸는 박스 */
+        position: absolute;
+        display: inline-block;
+        max-height: 50px;
+        cursor: pointer;
+    }
+    #logo_box img{
+        float: left;
+        height: 50px;
+        margin-right: 5px;
+    }
+    /***** 로고 끝 *****/
+
+    /***** 가운데 탭들 시작 *****/
+    #tab_box{ /* 탭들 감싸는 박스 */
+        position: absolute;
+        display: inline-block;
+        margin-left: 120px;
+        padding-left: 50px;
+    }
+    .tab_item{ /* 탭 각각 글자 박스*/
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        margin-right: 50px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    /***** 가운데 탭들 끝 *****/
 }
 @media (max-width: 1200px){
     #small_header{
         position: relative;
-        width: 100%;
+        width: 125%;
         height: 100%;
         padding: 10px 20px 10px 20px;
+
         text-align: left;
         
         z-index: 999;
@@ -79,41 +111,43 @@ header{     /* 제일 윗 부분 */
         color: #d7d7d7;
         border: none;
     }
+    
+    /***** 로고 시작 *****/
+    #logo_box{/* logo 감싸는 박스 */
+        position: absolute;
+        display: inline-block;
+        max-height: 30px;
+        cursor: pointer;
+    }
+    #logo_box img{
+        float: left;
+        height: 30px;
+        margin-top: 10px;
+        margin-right: 5px;
+    }
+    /***** 로고 끝 *****/
+
+    /***** 가운데 탭들 시작 *****/
+    #tab_box{ /* 탭들 감싸는 박스 */
+        position: absolute;
+        display: inline-block;
+        margin-left: 120px;
+        padding-left: 10px;
+    }
+    .tab_item{ /* 탭 각각 글자 박스*/
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+    /***** 가운데 탭들 끝 *****/
 }
 
 
 
-/***** 로고 시작 *****/
-#logo_box{/* logo 감싸는 박스 */
-    position: absolute;
-    display: inline-block;
-    max-height: 50px;
-    cursor: pointer;
-}
-#logo_box img{
-    float: left;
-    height: 50px;
-    margin-right: 5px;
-}
-/***** 로고 끝 *****/
 
 
-/***** 가운데 탭들 시작 *****/
-#tab_box{ /* 탭들 감싸는 박스 */
-    position: absolute;
-    display: inline-block;
-    margin-left: 120px;
-    padding-left: 50px;
-}
-.tab_item{ /* 탭 각각 글자 박스*/
-    display: inline-block;
-    height: 50px;
-    line-height: 50px;
-    margin-right: 50px;
-    cursor: pointer;
-    font-size: 18px;
-}
-/***** 가운데 탭들 끝 *****/
 
 
 /* 탭들 오른쪽 로그인 회원가입 등 시작 */
@@ -302,15 +336,43 @@ a.btn-layerClose:hover {
 }
 /* 레이어팝업 끝 */
 
-#center-container {
-    background-color: rgba( 0, 0,0 , 0.3 ) ;
-    width: 750px;
-    position: absolute;
-    left:50%;
-    top:50%;
-    padding:50px;
-    transform:translate(-50%, -50%)
-    
+@media (min-width: 1200px){
+    #center-container {
+        background-color: rgba( 0, 0,0 , 0.3 ) ;
+        width: 750px;
+        position: absolute;
+        left:50%;
+        top:50%;
+        padding:50px;
+        transform:translate(-50%, -50%)
+    }
+    #center-text-title{
+        font-family: 넥슨 고딕 bold;
+        font-size:40px;
+        color:#FF4C29;
+        line-height: 100px;
+    }
+    #center-text {
+        font-size:20px;
+    }
+}
+@media (max-width: 1200px){
+    #center-container {
+        position: absolute;
+        width: 150%;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba( 0, 0,0 , 0.3 ) ;
+    }
+    #center-text-title{
+        font-family: 넥슨 고딕 bold;
+        font-size: 30px;
+        color:#FF4C29;
+        line-height: 100px;
+    }
+    #center-text {
+        font-size: 14px;
+    }
 }
 #input-field {
     border-radius:50px;
@@ -333,16 +395,6 @@ a.btn-layerClose:hover {
     line-height: 30px;
 }
 
-#center-text-title{
-    font-family: 넥슨 고딕 bold;
-    font-size:40px;
-    color:#FF4C29;
-    line-height: 100px;
-}
-
-#center-text {
-    font-size:20px;
-}
 #index_center_logo{
     position: absolute;
     transform: translateX(-50%);
