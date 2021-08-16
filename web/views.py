@@ -89,7 +89,7 @@ def mypage():
 
         if id != "":
             datas = getSql().get_data_from_db("name, main_store, phone, email, pw", "user", f"where id = '{id}'")[0]
-            print(datas)
+            
             datas['main_store'] = "" if datas['main_store'] == None else datas['main_store']
             
             if datas['phone'] == None: datas['phone'] = ""
