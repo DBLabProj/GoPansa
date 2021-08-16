@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V7</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -25,32 +24,20 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/login.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 <!--===============================================================================================-->
-    <style>
-        #small_header{
-            background-color: rgba( 0, 0,0 , 0.2 ) ;
-            color: #d7d7d7;
-            border: none;
-        }
-        body{
-            background-image: url('/static/img/meat4.png');
-        }
-        *{
-            transition: all 1000ms;
-            -webkit-transition: all 1000ms;
-        }
-    </style>
 </head>
 <body>
 	{% include "menu_template.html" %}
     <script>
+        $('body').css('background-image', "url('/static/img/meat4.png')");
         $('#logo_img').attr('src', '/static/img/메인화면/logo_white.png');
     </script>
+
 	<center>
     <article>
-	
-	<div class="limiter">
+		
+	<div class="limiter p-t-50">
 		<div class="container-login100">
-			<div class="wrap-login100 p-t-90 p-b-30">
+			<div class="wrap-login100 p-t-50 p-b-50">
 				<form class="login100-form validate-form" action="/login" method="POST">
 					<span class="login100-form-title p-b-40">
 						고판사 로그인
@@ -91,7 +78,7 @@
 						</button>
 					</div>
 					
-					<div class="flex-col-c p-t-224">
+					<div class="flex-col-c p-t-100">
 						<span class="txt2 p-b-10">
 							Don’t have an account?
 						</span>

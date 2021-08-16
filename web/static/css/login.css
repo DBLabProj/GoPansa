@@ -29,6 +29,9 @@
 	margin: 0px; 
 	padding: 0px; 
 	box-sizing: border-box;
+  
+  transition: all 1000ms;
+  -webkit-transition: all 1000ms;
 }
 
 body, html {
@@ -150,7 +153,8 @@ iframe {
 .txt3 {
   font-family: Oswald-Regular;
   font-size: 16px;
-  color: #333333;
+  /* color: #333333; */
+  color: #aaaaaa;
   line-height: 1.2;
   text-transform: uppercase;
 }
@@ -169,13 +173,19 @@ iframe {
 [ login ]*/
 
 .limiter {
-  width: 100%;
-margin: 0 auto;
+  /* position: absolute;
+  left: 50%;
+  top: 15%;
+  transform: translateX(-50%); */
+
+  width: 40%;
+  margin: 0 auto;
+  max-height: 60%;
 }
 
 .container-login100 {
-  width: 100%;  
-  min-height: 100vh;
+  width: 500px;
+  height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
