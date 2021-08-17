@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    
+    <!-- CSS Loader -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css-loader.css') }}">
+    <!---------------->
 </head>
 <body>
+    <div class="loader loader-default" data-text="등급 판정 중..."></div>
     {% include "menu_template.html" %}
     <script>
         $('#logo_img').attr('src', '/static/img/메인화면/logo_white.png');
@@ -45,11 +50,11 @@
                             <input type="file" name="files[]" id="file" capture="camera" accept='image/jpeg,image/png'>
                         </div>
 
-                        <div class='`   3                                                           '>
+                        <div>
                             <img src="/static/img/meat3.png">
-                            <p style="font-size: 36px; color: #727272"><b>측정하실 고기의 이미지를 업로드 하세요</b></p>
-                            <p style="font-size: 26px; color: #9c9c9c"><b>업로드 할 파일을</b></p>
-                            <p style="font-size: 26px; color: #707070"><b style="color: rgb(250, 180, 0)">마우스로 끌어서</b><b> 넣어주세요</b></p>
+                            <p style="color: #727272"><b>측정하실 고기의 이미지를 업로드 하세요</b></p>
+                            <p style="color: #9c9c9c"><b>업로드 할 파일을</b></p>
+                            <p style="color: #707070"><b style="color: rgb(250, 180, 0)">마우스로 끌어서</b><b> 넣어주세요</b></p>
                         </div>
                     </div>
                 </div>
@@ -227,6 +232,7 @@
                         reader.readAsDataURL(f);
         
                         $('.classify_btn').click(function(){
+	                        $('.loader').addClass('is-active');
                             var formData = new FormData();
                             formData.append("file", f);
                             formData.append("meat", $("#meat_btn").prop('checked'));
@@ -242,6 +248,7 @@
                                 data: formData,
                                 success: function (data) {
                                     $("#grade_result").text(`${data.result} 등급입니다.`);
+                                    $('.loader').removeClass('is-active');
                                 },
                                 error: function (error) {
                                     console.error(error);
