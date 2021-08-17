@@ -73,14 +73,14 @@ $(window).on('load', function(){
             docHeight = $(document).height();
 
         // 화면의 중앙에 레이어를 띄운다.
-        if ($elHeight < docHeight || $elWidth < docWidth) {
-            $el.css({
-                marginTop: -$elHeight /2,
-                marginLeft: -$elWidth/2
-            })
-        } else {
-            $el.css({top: 0, left: 0});
-        }
+        // if ($elHeight < docHeight || $elWidth < docWidth) {
+        //     $el.css({
+        //         marginTop: -$elHeight /2,
+        //         marginLeft: -$elWidth/2
+        //     })
+        // } else {
+        //     $el.css({top: 0, left: 0});
+        // }
 
         $el.find('#result-close').click(function(){
             isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
@@ -124,7 +124,7 @@ $(window).on('load', function(){
 			},
 			success: function (data) {
 				// 전송 후 성공 시 실행 코드
-				console.log(data.data);
+				// console.log(data.data);
                 var meat_type = "";
                 
                 if (data.data.meat_type=="1"){

@@ -225,6 +225,7 @@ header{     /* 제일 윗 부분 */
         height: 500px;
         top: 50%;
         left: 50%;
+        transform: translate(-50%, -50%);
         background-color: #fff;
         /* border: 5px solid #3571B5; */
         z-index: 10;
@@ -281,6 +282,7 @@ header{     /* 제일 윗 부분 */
         height: 400px;
         top: 50%;
         left: 50%;
+        transform: translate(-50%, -50%);
         background-color: #fff;
         /* border: 5px solid #3571B5; */
         z-index: 10;
