@@ -960,6 +960,11 @@ a.btn-layerClose:hover {
 #camera_box{
     text-align: center;
 }
+#camera_box #pic{
+    width: 300px;
+    height: auto;
+    margin: 30px auto;
+}
 /* 육질 등급표 & 등급 측정 페이지 끝 */
 
 /* 등급 측정 페이지 시작 */
@@ -1165,7 +1170,7 @@ a.btn-layerClose:hover {
         position: relative;
         margin: auto;
         width: 100%;
-        height: 350px;
+        height: fit-content;
         border: 1px solid #ccc;
         background: #dedede;
         margin-top: 70px;
@@ -1177,7 +1182,8 @@ a.btn-layerClose:hover {
     }
     .zone #dropZ{
         position: relative;
-        height: 100%;
+        height: fit-content;
+        overflow: hidden;
     }
     .zone .btnCompression .active{
         background: var(--main-theme-color);
@@ -1207,6 +1213,15 @@ a.btn-layerClose:hover {
         margin: 0 10px;
         font-family: corbellight;
         font-weight: bold;
+    }
+    #dropZ > div{
+        position: relative;
+        float: left;
+        width: 100%;
+    }
+    #dropZ > div:nth-child(3){
+        position: relative;
+        float: right;
     }
     #dropZ img:not(#thumbnail){
         height: 100px;
@@ -1285,9 +1300,11 @@ a.btn-layerClose:hover {
         opacity: 1;
     }
     .fileBox{
-        position: absolute;
+        position: relative;
+        float: left;
+        /* position: absolute; */
         width: 95%;
-        height: 90%;
+        height: fit-content;
         /* max-width: 90%;
         max-height: 90%; */
         margin: 5px auto;
@@ -1316,12 +1333,12 @@ a.btn-layerClose:hover {
     }
     .fileBox img{
         display: block;
-        max-width: 95%;
-        max-height: 200px;
         width: 300px;
-        margin-top: 30px;
-        margin-right: 20px;
+        max-width: 95%;
+        max-height: 500px;
         left: 0;
+        margin: 30px auto 10px;
+        border: 1px solid gray;
         /* height: 85%; */
     }
     .x_btn{

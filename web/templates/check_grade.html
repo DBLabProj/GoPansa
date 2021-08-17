@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    
+
     <!-- CSS Loader -->
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/css-loader.css') }}">
     <!---------------->
@@ -63,6 +63,12 @@
             </div>
                 
             <div id='camera_box' class="contain_box" style='display: none'>
+                <input type="file" id="camera" name="camera" capture="camera" accept="image/*" />
+                <label for="file">여기를 눌러 촬영하세요</label>
+                <br/>
+                <img id="pic" style="width:50%;" />
+
+                <div class="classify_btn" style='display: none'>측정</div>
                 <script>
                     $(function(){
                         $('#camera').change(function(e){
@@ -94,12 +100,6 @@
                         });
                     });
                 </script>
-                <input type="file" id="camera" name="camera" capture="camera" accept="image/*" />
-                <label for="file">여기를 눌러 촬영하세요</label>
-                <br/>
-                <img id="pic" style="width:50%;" />
-
-                <div class="classify_btn" style='display: none'>측정</div>
             </div>
         </div>
    </article>
@@ -230,6 +230,10 @@
                             $("#thumbnail").attr("src", e.target.result);
                         }
                         reader.readAsDataURL(f);
+
+                        
+                        $('#pic').attr('src', URL.createObjectURL(f));
+                        $(".classify_btn").show();
         
                         $('.classify_btn').click(function(){
 	                        $('.loader').addClass('is-active');
@@ -264,7 +268,6 @@
                 }
             }
         });
-    
    </script>
 </body>
 </html>
