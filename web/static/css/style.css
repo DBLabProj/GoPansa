@@ -1216,12 +1216,7 @@ a.btn-layerClose:hover {
     }
     #dropZ > div{
         position: relative;
-        float: left;
         width: 100%;
-    }
-    #dropZ > div:nth-child(3){
-        position: relative;
-        float: right;
     }
     #dropZ img:not(#thumbnail){
         height: 100px;

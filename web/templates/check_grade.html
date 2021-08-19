@@ -115,6 +115,7 @@
             $(".fileBox").remove();
             $("#file").val(null);
             $(".classify_btn").hide();
+            $("#dropZ > div:nth(1)").show();
         }
         $(window).on('load', function(){
 
@@ -212,6 +213,8 @@
                         var fileName = f.name;
                         var fileSize = f.size / 1024 / 1024;
                         fileSize = fileSize < 1 ? fileSize.toFixed(3) : fileSize.toFixed(1);
+
+                        $("#dropZ > div:nth(1)").hide();
         
                         tag += 
                             "<div class='fileBox'>" +
