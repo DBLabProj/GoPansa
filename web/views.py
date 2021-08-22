@@ -94,7 +94,7 @@ def mypage():
             
             if datas['phone'] == None: datas['phone'] = ""
             
-            if len( datas['phone'] ) == 11:
+            if len( datas['phone'] ) > 0:
                 datas['phone'] = "".join( [x for x in datas['phone'][1:]] )
                 datas['phone'] = '+82 ' + datas['phone'][:2] + "-" \
                                 + datas['phone'][2]+"***-"+datas['phone'][6]+"***"
@@ -141,13 +141,10 @@ def regist():
         phone = request.form["PHONE"]
         username = request.form["username"]
         b_type = request.form["kinds"]
-        # b_name = request.form["store"]
-        b_name = '착한생고기'
-        # cb_number = request.form["cb_number"]
-        # cb_number = "착한생고기"
+        b_name = request.form["store_select"]
         
         sql = getSql()
-        result = sql.register(id, pw, username, b_name)
+        result = sql.register(id, pw, username, b_name, phone=phone)
                     
         if result == 2:
             return "<script>alert('이미 사용중인 아이디입니다.');</script>"+render_template("regist.html", id='')
@@ -288,7 +285,7 @@ def upload_img():
                 0: "2"
             }
         }
-        print(f'filepath:{filepath}')
+        
         model = AIModel()
         result_grade = None
 
@@ -302,15 +299,14 @@ def upload_img():
         
         print(f'result_grade : {result_grade}')
 
-        resp = jsonify({'result' : result_grade})
-        resp.status_code = 201
-
         sql = getSql()
         id, name = get_id_name()
         # print(id)
         result = sql.get_user_grade(id)
         print("result", result)
         
+
+        label_img = 'None'
         if result  == "P":
             # id, name, filename, meat_type, result_grade
             meat_type_ = 'B' if meat_type == "beef" else "P"
@@ -324,12 +320,16 @@ def upload_img():
                 "meat_type": meat_type,
                 "grade": result_grade
             }
-            create_label(label_info  )
+            create_label(label_info)
+            label_img = f'/{label_no}.png'
             
             # 라벨 버튼 생성해주기
             
         else:
             print("프리미엄 고객 아님")
+
+        resp = jsonify({'result' : result_grade, 'label_img':label_img})
+        resp.status_code = 201
 
         return resp
 

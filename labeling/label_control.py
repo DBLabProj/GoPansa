@@ -62,6 +62,6 @@ def create_label(classify_info):
 
     img = np.array(img)
 
-    cv2.imwrite('./labels/' + no + '.png', img)
+    cv2.imwrite('./web/static/labels/' + no + '.png', img)
 
 

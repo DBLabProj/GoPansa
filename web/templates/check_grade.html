@@ -254,7 +254,13 @@
                                 },
                                 data: formData,
                                 success: function (data) {
-                                    $("#grade_result").text(`${data.result} 등급입니다.`);
+                                    if(data.label_img != "None"){
+                                        $("#grade_result").html(`${data.result} 등급입니다.&nbsp;&nbsp;&nbsp;&nbsp;<a href='/static/labels/${data.label_img}' download='${data.label_img}'>라벨 다운로드</a>`);
+                                    }
+                                    else{
+                                        $("#grade_result").text(`${data.result} 등급입니다.`);
+                                    }
+
                                     $('.loader').removeClass('is-active');
                                 },
                                 error: function (error) {
