@@ -7,10 +7,10 @@
 </p><br>
 
 ## 👨‍👦‍👦 Members 
-- [Minku Koo](https://github.com/Minku-Koo) / corleone@kakao.com   
-- [Jiyong Park](https://github.com/Ji-yong219) / wldydslapjyy@naver.com
-- [Heebeom Yang](https://github.com/takeny1998) / takeny1998@gmail.com
-- [Hyunmoo Lee](https://github.com/Im-flying-sparrow) / hm11l1@naver.com
+- [Minku Koo](https://github.com/Minku-Koo) &nbsp;/&nbsp; *corleone@kakao.com*
+- [Jiyong Park](https://github.com/Ji-yong219) &nbsp;/&nbsp; *wldydslapjyy@naver.com*
+- [Heebeom Yang](https://github.com/takeny1998) &nbsp;/&nbsp; *takeny1998@gmail.com*
+- [Hyunmoo Lee](https://github.com/Im-flying-sparrow) &nbsp;/&nbsp; *hm11l1@naver.com*
 
 ## 📃 Table of Contents
 - [Members](#-members)
@@ -21,7 +21,6 @@
 - [SW Architecture](#-sw-architecture)
 - [Award](#-award)
 - [Articles](#-articles)
-
 
 ## 💾 DataSet
 #### We get data from [AI HUB : 축산물 품질(QC) 이미지](https://aihub.or.kr/aidata/30733)
@@ -38,17 +37,17 @@
   <img src="./sample_data/QC_pig_segmentation_1_006635.jpg" width="15%" title="pig1" ></img>
 </p>
 
-## 📈 Deep Learning Model Performance
-### Using ResNext Model
-### Transfer Learning through Fine Tuning
+## 📊 Deep Learning Model Performance
++ ### Using ResNext Model
++ ### Transfer Learning through Fine Tuning
 
-**Train Accuracy (Cow, Pig)**
+**📈 Train Accuracy (Cow, Pig)**
 <p align="">
   <img src="./deeplearning_model/performance_graph/cow_acc.png" width="30%" title="cow_acc" ></img>
   <img src="./deeplearning_model/performance_graph/pig_acc.png" width="30%" title="pig_acc" ></img>
 </p>
 
-**Train Loss (Cow, Pig)**
+**📉 Train Loss (Cow, Pig)**
 <p align="">
   <img src="./deeplearning_model/performance_graph/cow_loss.png" width="30%" title="cow_loss" ></img>
   <img src="./deeplearning_model/performance_graph/pig_loss.png" width="30%" title="pig_loss" ></img>
@@ -67,7 +66,7 @@
 ## 🏆 Award
 ### 2021년 제 2회 충북 공공데이터활용 창업경진대회 최우수상 수상
 <p align="center">
-  <img src="./images/Poster_2021.png" width="40%" title="poster" ></img>
+  <img src="./images/Poster_2021.jpg" width="40%" title="poster" ></img>
 </p><br>
 
 ## 📰 Articles
