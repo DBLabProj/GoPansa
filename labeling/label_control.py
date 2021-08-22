@@ -15,8 +15,8 @@ def create_label(classify_info):
     name = classify_info["name"]
     meat_type = classify_info["meat_type"]
     grade = classify_info["grade"]
-    print(os.getcwd())
-    print(os.listdir(os.getcwd()))
+    # print(os.getcwd())
+    # print(os.listdir(os.getcwd()))
     content_font = ImageFont.truetype("web/static/font/ONE Mobile Regular.ttf", 12)
     grade_font = ImageFont.truetype("web/static/font/GmarketSansTTFBold.ttf", 36)
     title_font = ImageFont.truetype("web/static/font/ONE Mobile Bold.ttf", 18)
@@ -53,7 +53,7 @@ def create_label(classify_info):
 
     # grade draw
     width, height = grade_font.getsize(grade)
-    print(width, height)
+    # print(width, height)
     draw.text((img_width - (width + padding), padding), grade, font=grade_font, fill=(0,0,0))
 
     # qr code draw
