@@ -1113,7 +1113,6 @@ a.btn-layerClose:hover {
         margin: 10px auto;
         padding: 15px;
 
-        top: -7%;
         left: 50%;
         transform: translateX(-50%);
         
@@ -1305,7 +1304,6 @@ a.btn-layerClose:hover {
         margin: 5px auto;
         padding: 5px;
 
-        top: -7%;
         left: 50%;
         transform: translateX(-50%);
         
