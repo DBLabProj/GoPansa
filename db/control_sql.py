@@ -2,6 +2,9 @@ import pymysql
 import time
 
 class Sql:
+    # constructor > connect to external mysql server
+    # input: host(server IP), db(database name), user(id), password
+    # output: None(if connecting is failed, this function'll call exception.)
     def __init__(self, host, db, user, password):
         try:
             self.__db = pymysql.connect(
@@ -14,7 +17,7 @@ class Sql:
         except pymysql.Error as e:
             code, msg = e.args
             print(code, msg)
-        
+
 
     # get data that is filtered by id from database
     # input: 'no' in classify_meat record you want to find
@@ -44,9 +47,10 @@ class Sql:
         return result
     
     
-    # 아이디가 존재하는지 확인하는 함수
+    # check the id is exist
     # input: id
-    # output: True(존재), False(없음)
+    # output: True(if it's exist), False(if it's not exist)
+    # if there's sql error, the function'll call the exception with code and error message.
     def is_id_exist(self, id):
         try:
             sql = "\
@@ -86,7 +90,8 @@ class Sql:
         
         return 1
     
-       # 회원가입하는 함수
+
+    # 회원가입하는 함수
     # input: id, password, name, phone_number, email
     # output: 1(완료), 2(ID 중복), 3(PW규칙위반), 4(SQL모듈에러)
     def register(self, id, pw, name, main_store, phone=None, email=None):
@@ -95,7 +100,6 @@ class Sql:
         sql = "INSERT INTO user VALUES(%s, %s, %s, %s, %s, %s, %s, %s);";
 
         try:
-            print(main_store)
             self.__cursor.execute(sql, (id, pw, "dummy", "N", name, main_store, phone, email))
             self.__db.commit()
         except pymysql.err.IntegrityError as e:
@@ -106,6 +110,7 @@ class Sql:
             return 4
         
         return 1
+
 
     def get_classify_result_data(self, no):
         sql ="\
@@ -287,15 +292,10 @@ class Sql:
             FROM restaurant \
             WHERE business_name LIKE '%"+storeName+"%';\
             "
-        # print(sql)
         storeList = []
         try:
             self.__cursor.execute(sql)
             storeList = self.__cursor.fetchall()
-            # storeList = [x for x in self.__cursor.fetchall()]
-            
-            # print("storeList>>",len(storeList))
-            # return storeList
         except pymysql.Error as e:
             print(e)
             return ["현재 서비스에 장애가 발생하였습니다."]
@@ -312,7 +312,6 @@ class Sql:
         try:
             self.__cursor.execute(sql)
             store_addr = self.__cursor.fetchone()
-            print(store_addr)
         except pymysql.Error as e:
             print(e)
             return "현재 서비스에 장애가 발생하였습니다."
@@ -326,6 +325,7 @@ class Sql:
     def __get_today(self):
         return time.strftime("%y%m%d", time.localtime(time.time()))
     
+
     # 현재시간 불러오는 함수
     # input: none
     # output: str(yymmdd)
@@ -358,6 +358,8 @@ class Sql:
         return str(num).zfill(4) # 0004 문자열 형식으로 출력
 
 
+    # 측정 결과를 DB에 입력하는 함수
+    # input: user_id(유저아이디), image_name(이미지이름),  meat_type(고기종류), grade(등급)
     def insert_classify_data(self, user_id, image_name, meat_type, grade):
         sql = "INSERT INTO classify VALUES(%s, %s, %s, %s, %s, %s);"
         count = self.__classify_count()
