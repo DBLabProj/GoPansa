@@ -56,7 +56,7 @@
 
 ## 🛠 WBS
 <p align="center">
-  <img src="./images/GoPansa_WBS_black.png" width="70%" title="wbs" ></img>
+  <img src="./images/GoPansa_WBS_black.png" width="80%" title="wbs" ></img>
 </p><br>
 
 ## 🖥 User Interface
@@ -66,7 +66,7 @@
 ## 🏆 Award
 ### 2021년 제 2회 충북 공공데이터활용 창업경진대회 최우수상 수상
 <p align="center">
-  <img src="./images/Poster_2021.jpg" width="40%" title="poster" ></img>
+  <img src="./images/Poster_2021.jpg" width="35%" title="poster" ></img>
 </p><br>
 
 ## 📰 Articles
