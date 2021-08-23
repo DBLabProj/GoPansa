@@ -72,7 +72,6 @@
 ## 📰 Articles
 
 - [충북과기원, 공공데이터 활용 창업경진대회 본선 2개팀 진출](https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=001&oid=030&aid=0002963578)
-- [창업경진대회 본선 진출팀 선정](http://www.ccdn.co.kr/news/articleView.html?idxno=718613#09SX)
-- [청주대, 인공지능소프트웨어전공 공공데이터 창업경진대회 최우수](https://www.news1.kr/articles/?4411435)
-- [청주대, 공공데이터 창업경진대회 최우수](http://www.cbnews.kr/news/articleView.html?idxno=205964)
+- [청주대, 공공데이터 창업경진대회 최우수상](http://www.kyosu.net/news/articleView.html?idxno=74608)
+- [청주대, 고기 사진만으로 육질 등급 측정 가능 ‘앱’ 개발](http://cc.newdaily.co.kr/site/data/html/2021/08/23/2021082300146.html)
 
