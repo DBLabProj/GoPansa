@@ -97,6 +97,9 @@
 
 
 ## ⚙ SW Architecture
+<p align="center">
+  <img src="./UI/SW_structure.png" width="30%" title="sw_structure" ></img>
+</p><br>
 
 ## 🏆 Award
 ### 2021년 제 2회 충북 공공데이터활용 창업경진대회 최우수상 수상
