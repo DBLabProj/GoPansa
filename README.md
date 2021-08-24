@@ -96,8 +96,8 @@
   <img src="./UI/map.png" width="50%" title="map" ></img>
 </p><br>
 
-## 📽 Testing Video (Youtube)
-### You can see the Testing Video [here](https://www.youtube.com/watch?v=VUpD5PQ4sMU)
+## 📽 Testing Video
+### You can see the Testing Video [here](https://www.youtube.com/watch?v=VUpD5PQ4sMU) (Youtube)
 
 
 ## ⚙ SW Architecture
