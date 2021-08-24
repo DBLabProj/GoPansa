@@ -1,6 +1,11 @@
 import pymysql
 import time
 
+# control mysql server with pymysql module
+# Author: Heebeom Yang
+# Created by 08/10/2021
+# Last modified by 08/24/2021
+
 class Sql:
     # constructor > connect to external mysql server
     # input: host(server IP), db(database name), user(id), password
