@@ -61,6 +61,41 @@
 
 ## 🖥 User Interface
 
+### Index Page
+<p align="">
+  <img src="./UI/index.png" width="70%" title="index" ></img>
+</p><br>
+
+### Register Profile & Store
+<p align="">
+  <img src="./UI/register.png" width="40%" title="register" ></img>
+  <img src="./UI/register_store.png" width="40%" title="register_store" ></img>
+</p><br>
+
+### MyPage & Payment
+<p align="">
+  <img src="./UI/mypage.png" width="40%" title="mypage" ></img>
+  <img src="./UI/payment.png" width="40%" title="payment" ></img>
+</p><br>
+
+### Check Meat Grade (Cow)
+<p align="">
+  <img src="./UI/check_cow_input.png" width="40%" title="check_cow_input" ></img>
+  <img src="./UI/check_cow.png" width="40%" title="check_cow" ></img>
+</p><br>
+
+### Show Meat Grade Table (Cow & Pig)
+<p align="">
+  <img src="./UI/cow_grade_taeble.png" width="40%" title="cow_grade_taeble" ></img>
+  <img src="./UI/pig_grade_taeble.png" width="40%" title="pig_grade_taeble" ></img>
+</p><br>
+
+### Map
+<p align="">
+  <img src="./UI/map.png" width="50%" title="map" ></img>
+</p><br>
+
+
 ## ⚙ SW Architecture
 
 ## 🏆 Award
