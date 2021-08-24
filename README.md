@@ -98,7 +98,7 @@
 
 ## ⚙ SW Architecture
 <p align="center">
-  <img src="./UI/SW_structure.png" width="30%" title="sw_structure" ></img>
+  <img src="./images/SW_structure.png" width="30%" title="sw_structure" ></img>
 </p><br>
 
 ## 🏆 Award
