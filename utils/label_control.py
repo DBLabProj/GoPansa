@@ -9,7 +9,7 @@ import os
 # input: 'no' values
 # output: label image file
 def create_label(classify_info):
-    os.makedirs('./labels', exist_ok=True)
+    os.makedirs('./web/static/labels', exist_ok=True)
     no = classify_info["no"]
     datetime =  classify_info["datetime"]
     name = classify_info["name"]

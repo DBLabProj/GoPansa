@@ -7,11 +7,9 @@ from flask import Flask, request, render_template, jsonify, Blueprint, redirect,
 import os, json
 
 import logging
-from db.control_sql import Sql
 from deeplearning_model.checkGrade import AIModel
-from labeling.label_control import *
-from raspberry import rasp_control
-from .utils import *
+from utils.label_control import *
+from utils.control_sql import Sql
 
 views = Blueprint("server", __name__)
 log = logging.getLogger('werkzeug')
@@ -285,7 +283,7 @@ def upload_img():
                 0: "2"
             }
         }
-        
+
         model = AIModel()
         result_grade = None
 
