@@ -33,7 +33,7 @@ class Sql:
             self.__db.commit()
         except pymysql.err.IntegrityError as e:
             print(e)
-            return 2 #ID 중복
+            return 2 #ID Duplication
         except pymysql.Error as e:
             print(e)
             return 4
@@ -189,11 +189,11 @@ class Sql:
             print(e)
         
         if result is None:
-            num = 1 # 결과없으면 1부터 시작
+            num = 1 # if no search results exist, start with 1.
         else:
-            num = result['num'] + 1 #결과있으면 개수+1임
+            num = result['num'] + 1 # if search results exist, add one to last serial no
         
-        return str(num).zfill(4) # 0004 문자열 형식으로 출력
+        return str(num).zfill(4) # change format
 
 
 
